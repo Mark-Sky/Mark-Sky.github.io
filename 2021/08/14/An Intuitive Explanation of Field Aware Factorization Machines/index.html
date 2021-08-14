@@ -6,26 +6,26 @@
     
 
     
-    <title>Debugging Gradient Checking | Hexo</title>
+    <title>An Intuitive Explanation of Field Aware Factorization Machines | Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="ML" />
     
-    <meta name="description" content="背景在很多机器学习的算法中，在训练模型的时候，我们都会经常使用梯度下降法来对模型中的需要学习的参数进行更新，而梯度下降法就必须要运用到导数的运算了，因此验证自己算出来的导数是否正确十分有必要，不然最后模型效果不理想却又不知道具体的原因就不好了  原理回忆一下导数的数学推导, 假设$J:R\to R,\theta\in R$$$\frac{dJ{(\theta)}}{d\theta}&#x3D;\lim\li">
+    <meta name="description" content="From LM to Poly2 to MF to FM to FFM Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)&#x3D;w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Debugging Gradient Checking">
-<meta property="og:url" content="http://example.com/2021/08/13/Debugging-Gradient-Checking/index.html">
+<meta property="og:title" content="An Intuitive Explanation of Field Aware Factorization Machines">
+<meta property="og:url" content="http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="背景在很多机器学习的算法中，在训练模型的时候，我们都会经常使用梯度下降法来对模型中的需要学习的参数进行更新，而梯度下降法就必须要运用到导数的运算了，因此验证自己算出来的导数是否正确十分有必要，不然最后模型效果不理想却又不知道具体的原因就不好了  原理回忆一下导数的数学推导, 假设$J:R\to R,\theta\in R$$$\frac{dJ{(\theta)}}{d\theta}&#x3D;\lim\li">
+<meta property="og:description" content="From LM to Poly2 to MF to FM to FFM Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)&#x3D;w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2021/08/13/l7Ttik9xOGbDRPH.png">
-<meta property="article:published_time" content="2021-08-13T12:53:26.000Z">
-<meta property="article:modified_time" content="2021-08-13T14:16:47.117Z">
+<meta property="og:image" content="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png">
+<meta property="article:published_time" content="2021-08-14T08:24:10.000Z">
+<meta property="article:modified_time" content="2021-08-14T08:31:03.467Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/08/13/l7Ttik9xOGbDRPH.png">
+<meta name="twitter:image" content="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png">
     
 
     
@@ -157,14 +157,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-Debugging-Gradient-Checking" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-An Intuitive Explanation of Field Aware Factorization Machines" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Debugging Gradient Checking
+        An Intuitive Explanation of Field Aware Factorization Machines
         </h1>
     
 
@@ -175,16 +175,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2021/08/13/Debugging-Gradient-Checking/" class="article-date">
-       <time datetime="2021-08-13T12:53:26.000Z" itemprop="datePublished">2021-08-13</time>
+    <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" class="article-date">
+       <time datetime="2021-08-14T08:24:10.000Z" itemprop="datePublished">2021-08-14</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/08/13/Debugging-Gradient-Checking/" class="article-date">
-     <time datetime="2021-08-13T14:16:47.117Z" itemprop="dateModified">2021-08-13</time>
+  <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" class="article-date">
+     <time datetime="2021-08-14T08:31:03.467Z" itemprop="dateModified">2021-08-14</time>
   </a>
 </div>
 
@@ -211,14 +211,202 @@
 
             
 
-            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在很多机器学习的算法中，在训练模型的时候，我们都会经常使用梯度下降法来对模型中的需要学习的参数进行更新，而梯度下降法就必须要运用到导数的运算了，因此验证自己算出来的导数是否正确十分有必要，不然最后模型效果不理想却又不知道具体的原因就不好了</p>
-<p><img src="https://i.loli.net/2021/08/13/l7Ttik9xOGbDRPH.png"></p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>回忆一下导数的数学推导, 假设$J:R\to R,\theta\in R$<br>$$<br>\frac{dJ{(\theta)}}{d\theta}=\lim\limits_{\epsilon\to0}\frac{J(\theta+\epsilon)-J(\theta-\epsilon)}{2\epsilon}<br>$$<br>因此，给定一个点$\theta$，我们可以用上面的式子去接近导数的值</p>
-<p>在实际应用中，通常可以取$\epsilon$为一个很小的值$10^{-4}$</p>
-<p>然后还需要考虑的是$\theta$的取值。在实际应用中，一般$J:R^n\to R,\theta\in R^n$</p>
-<p>通常可以对每一个维度都进行上面的操作<br>$$<br>g_i(\theta)=\frac{\partial J(\theta)}{\partial\theta_i}=\frac{J(\theta^{(i+)})-J(\theta^{(i-)})}{2\times EPSILON}<br>$$<br>$\theta^{(i+)}=\theta+ \epsilon e_i$</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradcheck_naive</span>(<span class="params">f, x, gradientText</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; </span></span><br><span class="line"><span class="string">    Gradient check for a function f.</span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    f -- a function that takes a single argument and outputs the</span></span><br><span class="line"><span class="string">         loss and its gradients</span></span><br><span class="line"><span class="string">    x -- the point (numpy array) to check the gradient at</span></span><br><span class="line"><span class="string">    gradientText -- a string detailing some context about the gradient computation</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    rndstate = random.getstate()</span><br><span class="line">    random.setstate(rndstate)</span><br><span class="line">    fx, grad = f(x) <span class="comment"># Evaluate function value at original point</span></span><br><span class="line">    h = <span class="number">1e-4</span>        <span class="comment"># Do not change this!</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Iterate over all indexes ix in x to check the gradient.</span></span><br><span class="line">    it = np.nditer(x, flags=[<span class="string">&#x27;multi_index&#x27;</span>], op_flags=[<span class="string">&#x27;readwrite&#x27;</span>])</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> it.finished:</span><br><span class="line">        ix = it.multi_index</span><br><span class="line"></span><br><span class="line">        x[ix] += h <span class="comment"># increment by h</span></span><br><span class="line">        random.setstate(rndstate)</span><br><span class="line">        fxh, _ = f(x) <span class="comment"># evalute f(x + h)</span></span><br><span class="line">        x[ix] -= <span class="number">2</span> * h <span class="comment"># restore to previous value (very important!)</span></span><br><span class="line">        random.setstate(rndstate)</span><br><span class="line">        fxnh, _ = f(x)</span><br><span class="line">        x[ix] += h</span><br><span class="line">        numgrad = (fxh - fxnh) / <span class="number">2</span> / h</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Compare gradients</span></span><br><span class="line">        reldiff = <span class="built_in">abs</span>(numgrad - grad[ix]) / <span class="built_in">max</span>(<span class="number">1</span>, <span class="built_in">abs</span>(numgrad), <span class="built_in">abs</span>(grad[ix]))</span><br><span class="line">        <span class="keyword">if</span> reldiff &gt; <span class="number">1e-5</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Gradient check failed for %s.&quot;</span> % gradientText)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;First gradient error found at index %s in the vector of gradients&quot;</span> % <span class="built_in">str</span>(ix))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Your gradient: %f \t Numerical gradient: %f&quot;</span> % (</span><br><span class="line">                grad[ix], numgrad))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        it.iternext() <span class="comment"># Step to next dimension</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Gradient check passed!.&quot;</span>)</span><br></pre></td></tr></table></figure>
-
+            <p>From LM to Poly2 to MF to FM to FFM</p>
+<h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><p>线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型<br>$$<br>f(x_1,x_2)=w_1x_1+w_2x_2<br>$$<br>一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$​</p>
+<p><img src="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png"></p>
+<h2 id="Poly2"><a href="#Poly2" class="headerlink" title="Poly2"></a>Poly2</h2><p><strong>为了理解Poly2和FM,FFM的内容，我们需要先搞清楚它们的自变量的域是什么</strong></p>
+<p>对于原本的离散的域，我们会用one-hot编码生成新的域，如上面的图会转变成下面这样</p>
+<table>
+<thead>
+<tr>
+<th>Gender: Male</th>
+<th>Gender: Female</th>
+<th>Genre: Action</th>
+<th>Genre: Romance</th>
+<th>Genre: Thriller</th>
+<th>Genre: Sci-Fi</th>
+<th>Rating</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<p>为了改进线性模型，Poly2就加入了一个相互作用项<br>$$<br>f(x_1,x_2)=w_1x_1+w_2x_2+w_{1,2}x_1x_2<br>$$<br>对所有的特征都两两组合<br>$$<br>\phi_{Poly2}(w,x)=\sum\limits_{j_1=1}^n\sum\limits_{j_2=1}^nw_{h(j_1,j_2)}x_{j1}x_{j2}<br>$$<br>但是Poly2模型也有对应的几个缺点</p>
+<p>一. 如果<strong>两个特征很少交互</strong>，那么预测是不可靠的</p>
+<p>比如训练集中有1万个训练样本，但是只有两个样本是<strong>男性</strong>观看<strong>恐怖电影</strong>的，那么我们未来预测男性观看恐怖电影的打分的时候，就是以这两个样本作为基准预测的（也就是这两个特征组合的权重是依赖着两个样本点的）。显然这是不可靠的</p>
+<p>二.对于一些<strong>零相互作用</strong>的特征组合，则预测也是不准的</p>
+<p>假设如果没有女性观看科幻电影的打分的样本，则根据上面的模型的打分是没有意义的</p>
+<p>三.由于用极暴力的手段对特征进行了两两组合，造成了<strong>数据稀疏性</strong>的问题</p>
+<p>其实这一点和上面的两点是类似的，就是没有该特征组合的情况会很多，这时候该特征组合的权重难以收敛</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<p>如图，A，B，C，D都是自变量，其取值为(0,1)，F是连续的因变量</p>
+<p>在这个样本集中，想要训练到$x_Bx_D$的权重是不可能的，因为$x_B,x_D$没有同时为1的情况，所以$w_{B,D}$无法训练得出。这就是样本稀疏性问题。</p>
+<p>因为相互作用项一共有$n^2$​个，在上面的自变量中，想要训练到所有的相互作用项权重，至少需要16个样本，现实中很难使得样本的数量可以满足所有相互作用项权重的训练。</p>
+<p>对于样本稀疏性的问题，通常可以使用<strong>降维</strong>的手段，使得样本矩阵变得稠密</p>
+<p>容易看出，训练互相作用项的复杂度是$O(n^2)$</p>
+<h2 id="MF"><a href="#MF" class="headerlink" title="MF"></a>MF</h2><p>MF全称Matrix Factorization，意思是矩阵分解</p>
+<p>在该方法中，我们使用不同的方法表示样本，用推荐系统中常见的user-item形式</p>
+<p><img src="https://i.loli.net/2021/08/14/vGdNMtQlJErPH7i.png"></p>
+<p>每一行代表用户（user），每一列代表电影（item），矩阵的每一个元素表示用户给该电影的打分</p>
+<p>我们要做的就是生成两个子空间，用户空间和商品空间，每一个用户对应用户空间里面的一个向量，同理每一部电影对应商品空间的一个向量</p>
+<p>相对应的，就是把上面的矩阵分解<br>$$<br>\hat{R}=P\cdot Q^T<br>$$<br>$R$是$M\times N$​的矩阵（有M个用户，N部电影），$P$是$M\times k$的矩阵，每个用户对应P矩阵里面的一行向量，也就是每个用户用一个k维的向量表示；$Q$是$N\times k$的矩阵，每部电影用一个k维的向量表示。</p>
+<p>分解的过程一般使用<strong>梯度下降法</strong>或者<strong>最小二乘法</strong>去逼近原矩阵，把损失函数的值降为最小</p>
+<p><img src="https://i.loli.net/2021/08/14/Lmb23SFkW6AzwCt.png"></p>
+<p><strong>MF对线性回归和Poly2的改进</strong></p>
+<p>从上面的图可以看出，因为隐向量的存在，即使我们没有第一个用户对memento的打分情况，我们仍然可以训练出来他对memento的打分的情况。对数据稀疏性的问题有了较好的解决。</p>
+<p><strong>MF的缺点</strong></p>
+<p>它只是把用户项目矩阵分解的一个简单想法，没有考虑电影类型，语言等辅助的判断信息</p>
+<p>因此这时候引进FM方法</p>
+<h2 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h2><p>FM全称Factorization Machines（FM）<br>$$<br>y=w_0+\sum\limits_{i=1}^nw_ix_i+\sum\limits_{i=1}^n\sum\limits_{j=i+1}^n&lt;v_i,v_j&gt;x_ix_j<br>$$<br>对每一个特征，都分配一个向量$v$来表示，所有的向量$v_i\quad i\in n$组成一个矩阵，该矩阵就是机器学习需要学习的参数之一。</p>
+<p>若令该潜在的向量空间的维数为$k$维，也就是每个特征对应一个$k$维的向量，则学习相互作用项的复杂度为$O(nk)$。可以看出比Poly2的复杂度要低（一般令$k&lt;n$)</p>
+<p>且FM解决了数据稀疏性的问题，因为当我们需要$(A_1,B_1)$对应的相互作用权重的时候，我们可以通过$(A_1,B_2)$训练$A_1$对应的隐向量的参数，同样$(A_2,B_1)$也可以训练$B_1$对应的隐向量的参数。即使我们在训练集中没有$(A_1,B_1)$这个组合，我们也可以训练到对应的权重，因为一个相互交互项也会和其它交互项会有关系，也就是说得到一个样本，训练该样本的交互项的同时会潜在地训练与该交互项相关的其他的交互项，这样就使得即使我们没有在数据集中得到$(A_1,B_1)$交互项的信息，但是也可以训练到该交互项的权重</p>
+<p><img src="https://i.loli.net/2021/08/14/8GbAMTvFJNgIoj1.png"></p>
+<p>如图，我们把用户-项目交互项用one-hot来编码，每行对应一个用户和一个项目，同时还加入了一些辅助的信息（以改进MF的过于简单的矩阵分解算法），辅助信息可以是比如该用户对其他电影的打分，该用户观看的最后一步电影等等。</p>
+<p>FM的相互交互项还有降低计算复杂度的公式：</p>
+<p><img src="https://i.loli.net/2021/08/14/Qagf1UDtu5VYHn4.png"></p>
+<h2 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h2><p>FFM全称Field Aware Factorization Machines</p>
+<p>FFM是FM模型的改进算法，Field – 域</p>
+<p><img src="https://i.loli.net/2021/08/14/oV3qGn6yiWAm5Ll.png"></p>
+<table>
+<thead>
+<tr>
+<th>Gender: Male</th>
+<th>Gender: Female</th>
+<th>Genre: Action</th>
+<th>Genre: Romance</th>
+<th>Genre: Thriller</th>
+<th>Genre: Sci-Fi</th>
+<th>Rating</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<p>FFM与FM最大的区别就是权重计算的不同</p>
+<p>FM计算权重，以第一行为例，则为<br>$$<br>v_{male}\cdot v_{action}+v_{male}\cdot v_{northAmerica}+v_{action}\cdot v_{northAmerica}<br>$$<br>这样male和Genre域的特征隐向量相乘的隐向量和male和Region域的特征隐向量相乘的隐向量都是$v_{male}$</p>
+<p>但是直观上来看，$&lt;v_{male},v_{action}&gt;$和$&lt;v_{male},v_{northAmerica}&gt;$是由区别的，也就是说male这个域和不同的域的相关性是不同的，我们应该更细致地划分male和不同域之间的权重</p>
+<p>于是就有FFM的计算权重的方法：<br>$$<br>v_{male,genre}\cdot v_{action,gender}+v_{male,region}\cdot v_{NAmerica,gender}+v_{action,region}\cdot v_{NAmerica,genre}<br>$$<br>隐向量的个数变得更多</p>
+<p>众所周知，越复杂的模型就越容易过拟合，当数据量足够大的时候，我们才应该考虑使用FFM，数据量小的时候用FM效果更好</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://i.loli.net/2021/08/14/PSr7JUjhoxX9Yb1.png"></p>
+<p>英语参考原文，中间也加入了我自己的一些理解</p>
+<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/an-intuitive-explanation-of-field-aware-factorization-machines-a8fee92ce29f">https://towardsdatascience.com/an-intuitive-explanation-of-field-aware-factorization-machines-a8fee92ce29f</a></p>
 
         </div>
         <footer class="article-footer">
@@ -226,7 +414,7 @@
 
 
 
-    <a data-url="http://example.com/2021/08/13/Debugging-Gradient-Checking/" data-id="cksbitwii000bqcun7zmo6kde" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" data-id="cksbitwi20001qcun5vhlcg6g" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -296,18 +484,17 @@
             "@type": "Person",
             "name": "John Doe"
         },
-        "headline": "Debugging Gradient Checking",
-        "image": "http://example.comhttps://i.loli.net/2021/08/13/l7Ttik9xOGbDRPH.png",
+        "headline": "An Intuitive Explanation of Field Aware Factorization Machines",
+        "image": "http://example.comhttps://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png",
         "keywords": "ML",
         "genre": "Technology",
-        "datePublished": "2021-08-13",
-        "dateCreated": "2021-08-13",
-        "dateModified": "2021-08-13",
-        "url": "http://example.com/2021/08/13/Debugging-Gradient-Checking/",
-        "description": "背景在很多机器学习的算法中，在训练模型的时候，我们都会经常使用梯度下降法来对模型中的需要学习的参数进行更新，而梯度下降法就必须要运用到导数的运算了，因此验证自己算出来的导数是否正确十分有必要，不然最后模型效果不理想却又不知道具体的原因就不好了
-
-原理回忆一下导数的数学推导, 假设$J:R\to R,\theta\in R$$$\frac{dJ{(\theta)}}{d\theta}=\lim\li",
-        "wordCount": 562
+        "datePublished": "2021-08-14",
+        "dateCreated": "2021-08-14",
+        "dateModified": "2021-08-14",
+        "url": "http://example.com/2021/08/14/An Intuitive Explanation of Field Aware Factorization Machines/",
+        "description": "From LM to Poly2 to MF to FM to FFM
+Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)=w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$",
+        "wordCount": 76
     }
 </script>
 
@@ -388,20 +575,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            日语杂学（1）
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2021/08/12/BERT/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">BERT</p>
+        <p class="article-nav-title">日语杂学（1）</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -598,7 +775,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://example.com/2021/08/13/Debugging-Gradient-Checking/';
+    var disqus_url = 'http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/';
     
     (function() {
     var dsq = document.createElement('script');
