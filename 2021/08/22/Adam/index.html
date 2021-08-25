@@ -6,16 +6,23 @@
     
 
     
-    <title>Hexo</title>
+    <title>Adam Optimization Algorithm | Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="keywords" content="ML" />
+    
+    <meta name="description" content="相关概念矩估计矩估计就是概率论里面学过的估计参数的方法 存在已知样本${X_1,X_2,X_3,…,X_n}$满足某一分布，该分布的函数为$f(x,\theta)$ 要根据上面的条件估计参数$\theta$，注意$\theta$并不一定是标量，也可以是向量 则先列出随机变量的矩（the moment of the random variable)$$m_n &#x3D; E[X^n]&#x3D;\int_{-\inf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Adam Optimization Algorithm">
+<meta property="og:url" content="http://example.com/2021/08/22/Adam/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="相关概念矩估计矩估计就是概率论里面学过的估计参数的方法 存在已知样本${X_1,X_2,X_3,…,X_n}$满足某一分布，该分布的函数为$f(x,\theta)$ 要根据上面的条件估计参数$\theta$，注意$\theta$并不一定是标量，也可以是向量 则先列出随机变量的矩（the moment of the random variable)$$m_n &#x3D; E[X^n]&#x3D;\int_{-\inf">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-22T02:59:46.000Z">
+<meta property="article:modified_time" content="2021-08-22T14:43:03.092Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
     
 
@@ -143,335 +150,186 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">Home</em>
+    <a class="page-title-link" href="/categories/Technology/">Technology</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-Adam" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2021" class="archive-year"><i class="icon fa fa-calendar-o"></i>2021</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png)" alt="机器学习linux" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-25T08:44:28.000Z" itemprop="datePublished">2021-08-25</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/">机器学习linux</a>
+        Adam Optimization Algorithm
         </h1>
     
 
-        <p class="article-excerpt">
-            服务器后台训练nohup + &amp;用nohup和&amp;一起，即可使得进程在服务器的后台运行
-如果只用nohup，则ctrl+c会使得进程结束
-如果只用&amp;，则关闭终端会使得进程结束
-一般最简单的
-1nohup [Command] &amp;
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/08/22/Adam/" class="article-date">
+       <time datetime="2021-08-22T02:59:46.000Z" itemprop="datePublished">2021-08-22</time>
+    </a>
+  </div>
 
-可以让程序在后台运行而不会因终端关闭或者断网而被终止，进程的输出会被默认重定向到nohup.out文件中
-比如
-1nohup python 
-        </p>
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/08/22/Adam/" class="article-date">
+     <time datetime="2021-08-22T14:43:03.092Z" itemprop="dateModified">2021-08-22</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ML/" rel="tag">ML</a>
     </div>
-</article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/22/Adam/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/22/Adam/">0</span>
-    
-</span>
+                
 
+                
 
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
             </div>
-            <div class="date"><time datetime="2021-08-22T02:59:46.000Z" itemprop="datePublished">2021-08-22</time></div>
-        </div>
         
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/22/Adam/">Adam Optimization Algorithm</a>
-        </h1>
-    
+        
+        <div class="article-entry" itemprop="articleBody">
+            
 
-        <p class="article-excerpt">
-            相关概念矩估计矩估计就是概率论里面学过的估计参数的方法
+            
+
+            
+
+            <h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><h2 id="矩估计"><a href="#矩估计" class="headerlink" title="矩估计"></a>矩估计</h2><p>矩估计就是概率论里面学过的估计参数的方法</p>
+<p>存在已知样本${X_1,X_2,X_3,…,X_n}$满足某一分布，该分布的函数为$f(x,\theta)$</p>
+<p>要根据上面的条件估计参数$\theta$，注意$\theta$并不一定是标量，也可以是向量</p>
+<p>则先列出随机变量的矩（the moment of the random variable)<br>$$<br>m_n = E[X^n]=\int_{-\infty}^{+\infty}x^nf(x;\theta)dx<br>$$<br>$m_n$​则为随机变量$X$的$n$阶矩</p>
+<p>很容易看出，随机变量的一阶矩就是期望值，二阶矩就是非中心方差（也就是没有减掉平均值的方差）</p>
+<p>当参数$\theta$是一个$k$​维的向量，则只需要列出随机变量的1到k阶矩，然后我们认为它们等于对应的样本的对应平均值<br>$$<br>\begin{align*}<br>  \frac{1}{n}\sum\limits_{i=1}^nX_i &amp;= \int_{-\infty}^{+\infty}xf(x;\theta)dx \<br>   \frac{1}{n}\sum\limits_{i=1}^nX_i^2 &amp;= \int_{-\infty}^{+\infty}x^2f(x;\theta)dx\<br>    …\<br>    \frac{1}{n}\sum\limits_{i=1}^nX_i^k &amp;= \int_{-\infty}^{+\infty}x^kf(x;\theta)dx<br>\end{align*}<br>$$<br>k个变量，k条等式，有唯一的解，这样就可以计算出参数$\hat{\theta}$估计</p>
+<h2 id="移动平均（MA）"><a href="#移动平均（MA）" class="headerlink" title="移动平均（MA）"></a>移动平均（MA）</h2><p>这个概念经常出现在经济学里面，股票市场的分析</p>
+<p>原本的意思大概是存在一个数集${x_1,x_2,x_3,…,x_n}$</p>
+<p>该数集元素的下标表示第$t$天，然后人为设定一个数值$k,(k&lt;n)$,从第一天开始，取数集的子集${x_1,x_2,..,x_k}$，计算移动平均的值<br>$$<br>SMA_1=\frac{1}{k}\sum\limits_{i=1}^kx_i<br>$$<br>$SMA$​表示simple moving average</p>
+<p>然后向后移动子集，也就是取${x_2,x_3,..,x_{k+1}}$，求平均值<br>$$<br>SMA_2=\frac{1}{k}\sum\limits_{i=2}^{k+1}x_i<br>$$<br>逐步得到${SMA_1,SMA_2,…,SMA_{n-k+1}}$</p>
+<p>而在adam算法里面用到的是$EMA$​，也就是Exponential moving average</p>
+<p>对于一个集合$Y$,$EMA$可以递归计算<br>$$<br>S_t=<br>\left{<br>             \begin{array}{<strong>lr</strong>}<br>             Y_1 &amp;  \  </p>
+<pre><code>        \alpha Y_t+(1-\alpha)S_&#123;t-1&#125;, &amp;    
+         \end&#123;array&#125;  
+</code></pre>
+<p>\right.<br>$$<br>$\alpha$是超参数，$S_t$表示在$t$时间点时的EMA的值，$Y_t$表示集合$Y$的第$t$个元素</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://example.com/2021/08/22/Adam/" data-id="cksrnnrh30000ssun3tgv0hpj" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "John Doe"
+        },
+        "headline": "Adam Optimization Algorithm",
+        "image": "http://example.com",
+        "keywords": "ML",
+        "genre": "Technology",
+        "datePublished": "2021-08-22",
+        "dateCreated": "2021-08-22",
+        "dateModified": "2021-08-22",
+        "url": "http://example.com/2021/08/22/Adam/",
+        "description": "相关概念矩估计矩估计就是概率论里面学过的估计参数的方法
 存在已知样本${X_1,X_2,X_3,…,X_n}$满足某一分布，该分布的函数为$f(x,\theta)$
 要根据上面的条件估计参数$\theta$，注意$\theta$并不一定是标量，也可以是向量
-则先列出随机变量的矩（the moment of the random variable)$$m_n = E[X^n]=\int_{-\inf
-        </p>
-    </div>
+则先列出随机变量的矩（the moment of the random variable)$$m_n = E[X^n]=\int_{-\inf",
+        "wordCount": 104
+    }
+</script>
+
 </article>
-    
-        </div>
-    
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/20/Skip-Gram/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/20/toOmJdU9CMyKbrF.png)" alt="Skip-Gram" class="thumbnail-image"></span>
-    
+    <section id="comments">
     
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/20/Skip-Gram/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-20T08:44:28.000Z" itemprop="datePublished">2021-08-20</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/20/Skip-Gram/">Skip-Gram</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            应用
-给定一个中心单词centerWord，通过该算法可以预测出最有可能在该中心单词附近的单词context Words
-
-当训练集较小的时候，也能有很高的准确率，对比较少见的单词或短语的效果预测效果较好
-
-
-
-
-需要注意的是，Skip-Gram算法的最终目标并不是用于预测context Words，而是用于给出一个比较好的单词的向量表示，这也是为什么Word2Vec经常会和Skip-Gram一起
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png)" alt="An Intuitive Explanation of Field Aware Factorization Machines" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/">0</span>
-    
-</span>
 
 
     
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-14T08:24:10.000Z" itemprop="datePublished">2021-08-14</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/">An Intuitive Explanation of Field Aware Factorization Machines</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            From LM to Poly2 to MF to FM to FFM
-Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)=w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/14/9VdoGY3iy7eI4X1.jpg)" alt="日语杂学（1）" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Language/">Language</a>
-            </div>
-            <div class="date"><time datetime="2021-08-14T02:38:54.000Z" itemprop="datePublished">2021-08-14</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/">日语杂学（1）</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            ​    
-​    最近了解到的冷知识，第一次看到感觉有点震惊。平时总是说日语的汉字都是抄中国的，我在学习的时候也总是觉得这个词不就是中文的那个词吗，印象中总是日本把中国的东西搬了过去。
-​    像是“社会”“主义”，如果有人告诉我，这两个词是日本造的汉字，应该不太难接受，因为知道日本在明治维新后改革了国家体制，走上资本主义道路，思想也基本“脱亚入欧”，吸取了很多西方的先进的思想，中国在甲午海
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/13/Debugging-Gradient-Checking/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/13/l7Ttik9xOGbDRPH.png)" alt="Debugging Gradient Checking" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/13/Debugging-Gradient-Checking/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-13T12:53:26.000Z" itemprop="datePublished">2021-08-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/13/Debugging-Gradient-Checking/">Debugging Gradient Checking</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            背景在很多机器学习的算法中，在训练模型的时候，我们都会经常使用梯度下降法来对模型中的需要学习的参数进行更新，而梯度下降法就必须要运用到导数的运算了，因此验证自己算出来的导数是否正确十分有必要，不然最后模型效果不理想却又不知道具体的原因就不好了
-
-原理回忆一下导数的数学推导, 假设$J:R\to R,\theta\in R$$$\frac{dJ{(\theta)}}{d\theta}=\lim\li
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
+    </section>
 
 
 
@@ -533,6 +391,29 @@ Linear Regression线性回归是最简单无脑的拟合一个因变量和一个
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            机器学习linux
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2021/08/20/Skip-Gram/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Skip-Gram</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -744,11 +625,13 @@ Linear Regression线性回归是最简单无脑的拟合一个因变量和一个
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://example.com/2021/08/22/Adam/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
