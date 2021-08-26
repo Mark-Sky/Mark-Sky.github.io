@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png">
 <meta property="article:published_time" content="2021-08-25T08:44:28.000Z">
-<meta property="article:modified_time" content="2021-08-25T15:30:46.092Z">
+<meta property="article:modified_time" content="2021-08-26T07:22:29.528Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
@@ -184,7 +184,7 @@
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
   <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" class="article-date">
-     <time datetime="2021-08-25T15:30:46.092Z" itemprop="dateModified">2021-08-25</time>
+     <time datetime="2021-08-26T07:22:29.528Z" itemprop="dateModified">2021-08-26</time>
   </a>
 </div>
 
@@ -231,6 +231,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python trainer.py &gt; myoutput.txt 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 
 <p>然后就可以下播，开始玩了</p>
+<p>如果不想启用缓存，也就是直接把输出放到log中的话，那就加上参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup -u python trainer.py &gt; myoutput.txt 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="查看进程-显卡"><a href="#查看进程-显卡" class="headerlink" title="查看进程/显卡"></a>查看进程/显卡</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
 
 <p>如果没有进程在运行，那么输入完上面的命令会大概出现下面的样子</p>
@@ -253,6 +258,24 @@
 <p>比如：如果我知道我要结束的进程的进程号是32580，则只需要像下面这样</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 32580</span><br></pre></td></tr></table></figure>
 
+<h2 id="显卡设置"><a href="#显卡设置" class="headerlink" title="显卡设置"></a>显卡设置</h2><p>用服务器运行代码的目的一是本地运行的内存太小，基本上大一点的机器学习任务中途都会被linux操作系统kill掉，二是服务器上能用显卡运行程序，显卡深度学习的速度比CPU的速度要快，因此我们通常会使用服务器来运行深度学习训练</p>
+<p>通常有两种方法可以设置在哪个显卡上面运行</p>
+<h3 id="py文件"><a href="#py文件" class="headerlink" title="py文件"></a>py文件</h3><p>在要运行的py文件的前面几行，加入下面代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>] = <span class="string">&quot;0,1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中CUDA是加速深度学习的框架，需要自行到网上下载安装到linux中，一般的深度学习框架都可以用CUDA加速，像是Tensorflow和Pytorch</p>
+<p>而0，1则是选择要运行的显卡，可以用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>查看空闲的显卡，然后就用空闲的显卡运行程序</p>
+<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><p>还可以在终端设置运行的显卡</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=3,4,1 python train.py</span><br></pre></td></tr></table></figure>
+
+<p>但是这样就无法后台运行程序了，因为如果我们加上nohup</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup CUDA_VISIBLE_DEVICES=3,4,1 python train.py &amp;</span><br></pre></td></tr></table></figure>
+
+<p>就会报错指令不对</p>
+<p>因此最好的方法还是在py文件中添加os.environ设置显卡</p>
 
         </div>
         <footer class="article-footer">
@@ -260,7 +283,7 @@
 
 
 
-    <a data-url="http://example.com/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" data-id="cksrnnrhf000bssunc35g0g3k" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://example.com/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" data-id="ckssmdrgd000764unhhcl96k0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -336,7 +359,7 @@
         "genre": "Technology",
         "datePublished": "2021-08-25",
         "dateCreated": "2021-08-25",
-        "dateModified": "2021-08-25",
+        "dateModified": "2021-08-26",
         "url": "http://example.com/2021/08/25/机器学习linux/",
         "description": "服务器后台训练nohup + &amp;用nohup和&amp;一起，即可使得进程在服务器的后台运行
 如果只用nohup，则ctrl+c会使得进程结束
@@ -347,7 +370,7 @@
 可以让程序在后台运行而不会因终端关闭或者断网而被终止，进程的输出会被默认重定向到nohup.out文件中
 比如
 1nohup python ",
-        "wordCount": 117
+        "wordCount": 180
     }
 </script>
 
