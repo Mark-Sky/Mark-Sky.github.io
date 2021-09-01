@@ -1,140 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html>
+<head>
+    <meta charset="utf-8" />
 
-    <meta name="author" content="John Doe">
-
-
-
-
-
-
-
-<title>机器学习linux | Hexo</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
-</style>
-
-
-
-    <!-- stylesheets list from _config.yml -->
-    
-    <link rel="stylesheet" href="/css/style.css">
     
 
-
-
-
-    <!-- scripts list from _config.yml -->
     
-    <script src="/js/frame.js"></script>
+    <title>机器学习linux | Hexo</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="ML" />
+    
+    <meta name="description" content="服务器后台训练nohup + &amp;用nohup和&amp;一起，即可使得进程在服务器的后台运行 如果只用nohup，则ctrl+c会使得进程结束 如果只用&amp;，则关闭终端会使得进程结束 一般最简单的 1nohup [Command] &amp;  可以让程序在后台运行而不会因终端关闭或者断网而被终止，进程的输出会被默认重定向到nohup.out文件中 比如 1nohup python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习linux">
+<meta property="og:url" content="http://example.com/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务器后台训练nohup + &amp;用nohup和&amp;一起，即可使得进程在服务器的后台运行 如果只用nohup，则ctrl+c会使得进程结束 如果只用&amp;，则关闭终端会使得进程结束 一般最简单的 1nohup [Command] &amp;  可以让程序在后台运行而不会因终端关闭或者断网而被终止，进程的输出会被默认重定向到nohup.out文件中 比如 1nohup python">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png">
+<meta property="article:published_time" content="2021-08-25T08:44:28.000Z">
+<meta property="article:modified_time" content="2021-08-26T09:36:14.209Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png">
+    
+
+    
+        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
     
 
 
-
-
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
-
-
-  <!-- hexo injector head_end start -->
+<!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
-  <body>
-    <div class="mask-border">
-    </div>
 
-    <div class="wrapper">
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Language/">Language</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Technology/">Technology</a></li></ul>
+                                
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
 
-      <div class="header">
-  <div class="flex-container">
-    <div class="header-inner">
-      <div class="site-brand-container">
-        <a href="/">Frame.</a>
-      </div>
-      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
-        Menu
-      </div>
-      <nav class="site-nav">
-        <ul class="menu-list">
-          
-            
-              <li class="menu-item">
-                <a href="/">Home</a>
-              </li> 
-                   
-          
-            
-              <li class="menu-item">
-                <a href="/archives/">Archive</a>
-              </li> 
-                   
-          
-            
-              <li class="menu-item">
-                <a href="/categories/gallery/">Gallery</a>
-              </li> 
-                   
-          
-        </ul>
-      </nav>
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
     </div>
-  </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Technology/">Technology</a>
+    </h1>
 </div>
 
-
-      <div class="main">
-        <div class="flex-container">
-          <article id="post">
-
-  
-    <div class="post-head">
-    <div class="post-info">
-        <div class="tag-list">
-            
-                
-                    <span class="post-tag">
-                        <a href="/tags/ML/">
-                            ML
-                        </a>
-                    </span>    
-                           
-            
-        </div>
-        <div class="post-title">
-            
-            
-                机器学习linux
-            
-            
-        </div>
-        <span class="post-date">
-            Aug 25, 2021
-        </span>
-    </div>
-    <div class="post-img">
+                        <div class="main-body-content">
+                            <article id="post-机器学习linux" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-            <div class="h-line-primary"></div>
-              
-    </div>
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        机器学习linux
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" class="article-date">
+       <time datetime="2021-08-25T08:44:28.000Z" itemprop="datePublished">2021-08-25</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" class="article-date">
+     <time datetime="2021-08-26T09:36:14.209Z" itemprop="dateModified">2021-08-26</time>
+  </a>
 </div>
-    <div class="post-content">
-    <h2 id="服务器后台训练"><a href="#服务器后台训练" class="headerlink" title="服务器后台训练"></a>服务器后台训练</h2><h3 id="nohup-amp"><a href="#nohup-amp" class="headerlink" title="nohup + &amp;"></a>nohup + &amp;</h3><p>用nohup和&amp;一起，即可使得进程在服务器的后台运行</p>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ML/" rel="tag">ML</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h2 id="服务器后台训练"><a href="#服务器后台训练" class="headerlink" title="服务器后台训练"></a>服务器后台训练</h2><h3 id="nohup-amp"><a href="#nohup-amp" class="headerlink" title="nohup + &amp;"></a>nohup + &amp;</h3><p>用nohup和&amp;一起，即可使得进程在服务器的后台运行</p>
 <p>如果只用nohup，则ctrl+c会使得进程结束</p>
 <p>如果只用&amp;，则关闭终端会使得进程结束</p>
 <p>一般最简单的</p>
@@ -200,51 +281,478 @@
 <p>就会报错指令不对</p>
 <p>因此最好的方法还是在py文件中添加os.environ设置显卡</p>
 
-</div> 
+        </div>
+        <footer class="article-footer">
+            
 
+
+
+    <a data-url="http://example.com/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" data-id="ckt16wxv1000c9sunbee0fvc6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
-    window.onload = detectors();
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
 </script>
-    <div class="post-footer">
-    <div class="h-line-primary"></div>
-    <nav class="post-nav">
-        <div class="prev-item">
-           
-                <div class="icon arrow-left"></div>
-                <div class="post-link">
-                    <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/">Prev</a>
-                </div>
-            
-        </div>
-        <div class="next-item">
-            
-                <div class="icon arrow-right"></div>
-                <div class="post-link">
-                  <a href="/2021/08/20/Skip-Gram/">Next</a>  
-                </div>  
-            
-        </div>
-    </nav>
-</div>
 
-  
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "John Doe"
+        },
+        "headline": "机器学习linux",
+        "image": "http://example.comhttps://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png",
+        "keywords": "ML",
+        "genre": "Technology",
+        "datePublished": "2021-08-25",
+        "dateCreated": "2021-08-25",
+        "dateModified": "2021-08-26",
+        "url": "http://example.com/2021/08/25/机器学习linux/",
+        "description": "服务器后台训练nohup + &amp;用nohup和&amp;一起，即可使得进程在服务器的后台运行
+如果只用nohup，则ctrl+c会使得进程结束
+如果只用&amp;，则关闭终端会使得进程结束
+一般最简单的
+1nohup [Command] &amp;
+
+可以让程序在后台运行而不会因终端关闭或者断网而被终止，进程的输出会被默认重定向到nohup.out文件中
+比如
+1nohup python ",
+        "wordCount": 180
+    }
+</script>
+
 </article>
-        </div>
-      </div>
-      
-      <div class="footer">
-    <div class="flex-container">
-        <div class="footer-text">
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
             
-            
-            
-                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://hexo.io/">Frame</a>
                 
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/zhouk18235739" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="stack-overflow" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-stack-overflow"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/Mark-Sky" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            N2之路
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2021/08/20/Skip-Gram/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Skip-Gram</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2021/08/31/UQGviYcNXPy3Sel.png)" alt="编译原理入门" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
+                            <p class="item-title"><a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" class="title">编译原理入门</a></p>
+                            <p class="item-date"><time datetime="2021-08-31T09:13:44.000Z" itemprop="datePublished">2021-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2021/08/30/ueUXYyxVpCNMrm7.png)" alt="表义文字的魅力" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Language/">Language</a></p>
+                            <p class="item-title"><a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" class="title">表义文字的魅力</a></p>
+                            <p class="item-date"><time datetime="2021-08-30T10:09:05.000Z" itemprop="datePublished">2021-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2021/08/27/sWkiVBHw6lRtTY8.png)" alt="N2之路" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Language/">Language</a></p>
+                            <p class="item-title"><a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" class="title">N2之路</a></p>
+                            <p class="item-date"><time datetime="2021-08-27T08:38:06.000Z" itemprop="datePublished">2021-08-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png)" alt="机器学习linux" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
+                            <p class="item-title"><a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" class="title">机器学习linux</a></p>
+                            <p class="item-date"><time datetime="2021-08-25T08:44:28.000Z" itemprop="datePublished">2021-08-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/08/20/Skip-Gram/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2021/08/20/toOmJdU9CMyKbrF.png)" alt="Skip-Gram" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
+                            <p class="item-title"><a href="/2021/08/20/Skip-Gram/" class="title">Skip-Gram</a></p>
+                            <p class="item-date"><time datetime="2021-08-20T08:44:28.000Z" itemprop="datePublished">2021-08-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
         </div>
     </div>
-</div>
 
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Technology/">Technology</a><span class="category-list-count">5</span></li></ul>
+        </div>
     </div>
 
-  </body>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">8</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chinese/" rel="tag">Chinese</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Complie/" rel="tag">Complie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Japanese/" rel="tag">Japanese</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Chinese/" style="font-size: 10px;">Chinese</a> <a href="/tags/Complie/" style="font-size: 10px;">Complie</a> <a href="/tags/Japanese/" style="font-size: 15px;">Japanese</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 John Doe</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://example.com/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML.js"></script>
+
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
 </html>
