@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/09/07/BLNioCHqZO5Qf82.png">
 <meta property="article:published_time" content="2021-09-07T13:51:08.000Z">
-<meta property="article:modified_time" content="2021-09-14T13:26:34.857Z">
+<meta property="article:modified_time" content="2021-09-14T13:27:51.782Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Compile">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
   <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="article-date">
-     <time datetime="2021-09-14T13:26:34.857Z" itemprop="dateModified">2021-09-14</time>
+     <time datetime="2021-09-14T13:27:51.782Z" itemprop="dateModified">2021-09-14</time>
   </a>
 </div>
 
@@ -306,7 +306,7 @@
 </ul>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><img src="https://i.loli.net/2021/09/14/oSaJB5dPe2Zz76U.png" style="zoom: 80%;" />
 
-<p><img src="C:\Users\11056\AppData\Roaming\Typora\typora-user-images\image-20210914180515305.png" alt="image-20210914180515305"></p>
+<p><img src="https://i.loli.net/2021/09/14/NPgjATwifarKLZ1.png"></p>
 <p>图3-16可以表示无符号数字的识别，若状态到达19，20，21这三个的任意一个，则表示该数字识别成功，返回数字。该图可以解释$10.$不可以作为最终状态，也就是若程序中写数字时，写成$10.$的话，编译时就会报错</p>
 <p>初始状态为12，然后读取1，进入13状态，再读取0，进入13状态，读取.，进入14状态，最后没有可读取的了，于是最终会停留在14状态，但是14状态不是接受状态，因此10.并不是一个正确的数字的写法</p>
 <h2 id="构造词法分析器"><a href="#构造词法分析器" class="headerlink" title="构造词法分析器"></a>构造词法分析器</h2><p>用程序实现词法分析器有很多方法，当然可以在每个状态都用if实现，但是若语言支持switch的话，可以比较简洁地写出来</p>
@@ -388,7 +388,7 @@
 
 
 
-    <a data-url="http://example.com/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" data-id="cktk3zxsv000onkuncua61ks2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://example.com/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" data-id="cktk41ip9000no4un3ec54vos" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -470,7 +470,7 @@
 词法单元包含两个部分，单元名和属性，其中属性值是一个结构化的数据，其中包含词素，类型，第一次出现的位置，….编译时能够识别undefined variable，就是靠属性值中记录的第一次出现的位置来判定的
 
 如上图，一般词素就是具体的定义，比如说人定义的变量a,b,c等等，都是词素，而它们都可以抽象成词法",
-        "wordCount": 152
+        "wordCount": 151
     }
 </script>
 
