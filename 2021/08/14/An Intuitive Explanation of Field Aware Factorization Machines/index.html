@@ -1,223 +1,240 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-    <meta charset="utf-8" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>An Intuitive Explanation of Field Aware Factorization Machines - Hexo</title>
 
-    
-
-    
-    <title>An Intuitive Explanation of Field Aware Factorization Machines | Hexo</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="keywords" content="ML" />
-    
-    <meta name="description" content="From LM to Poly2 to MF to FM to FFM Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)&#x3D;w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$">
-<meta property="og:type" content="article">
-<meta property="og:title" content="An Intuitive Explanation of Field Aware Factorization Machines">
-<meta property="og:url" content="http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="From LM to Poly2 to MF to FM to FFM Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)&#x3D;w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png">
-<meta property="article:published_time" content="2021-08-14T08:24:10.000Z">
-<meta property="article:modified_time" content="2021-08-14T08:31:03.467Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="ML">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png">
-    
-
-    
-        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
-    
-
-    
-
-    
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-
-    
-<link rel="stylesheet" href="/libs/titillium-web/styles.css">
-
-    
-<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
     
-<link rel="stylesheet" href="/css/style.css">
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
-    
-<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
 
-    
-    
-        
-<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+<!-- 主题依赖的图标库，不要自行修改 -->
 
-    
-    
-        
-<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-
-    
-    
-    
-    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a href="/" class="logo"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
-                                </li>
-                            
-                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Language/">Language</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Technology/">Technology</a></li></ul>
-                                
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
-                                </li>
-                            
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-
-<script src="/js/insight.js"></script>
-
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    <a class="page-title-link" href="/categories/Technology/">Technology</a>
-    </h1>
-</div>
-
-                        <div class="main-body-content">
-                            <article id="post-An Intuitive Explanation of Field Aware Factorization Machines" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-        An Intuitive Explanation of Field Aware Factorization Machines
-        </h1>
-    
-
-            </header>
-        
-        
-            <div class="article-meta">
-                
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" class="article-date">
-       <time datetime="2021-08-14T08:24:10.000Z" itemprop="datePublished">2021-08-14</time>
-    </a>
   </div>
+</nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="An Intuitive Explanation of Field Aware Factorization Machines">
+              
+            </span>
 
-<div class="article-date">
-  <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" class="article-date">
-     <time datetime="2021-08-14T08:31:03.467Z" itemprop="dateModified">2021-08-14</time>
-  </a>
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-14 16:24" pubdate>
+        2021年8月14日 下午
+      </time>
+    </span>
+  
 </div>
 
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
 
-                
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
 
-                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/ML/" rel="tag">ML</a>
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
     </div>
+  </header>
 
-                
+  <main>
+    
+      
 
-                
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">An Intuitive Explanation of Field Aware Factorization Machines</h1>
             
-
-            
-
-            
-
-            <p>From LM to Poly2 to MF to FM to FFM</p>
+            <div class="markdown-body">
+              <p>From LM to Poly2 to MF to FM to FFM</p>
 <h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><p>线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型<br>$$<br>f(x_1,x_2)=w_1x_1+w_2x_2<br>$$<br>一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$​</p>
-<p><img src="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png"></p>
+<p><img src="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="Poly2"><a href="#Poly2" class="headerlink" title="Poly2"></a>Poly2</h2><p><strong>为了理解Poly2和FM,FFM的内容，我们需要先搞清楚它们的自变量的域是什么</strong></p>
 <p>对于原本的离散的域，我们会用one-hot编码生成新的域，如上面的图会转变成下面这样</p>
 <table>
@@ -324,12 +341,12 @@
 <p>容易看出，训练互相作用项的复杂度是$O(n^2)$</p>
 <h2 id="MF"><a href="#MF" class="headerlink" title="MF"></a>MF</h2><p>MF全称Matrix Factorization，意思是矩阵分解</p>
 <p>在该方法中，我们使用不同的方法表示样本，用推荐系统中常见的user-item形式</p>
-<p><img src="https://i.loli.net/2021/08/14/vGdNMtQlJErPH7i.png"></p>
+<p><img src="https://i.loli.net/2021/08/14/vGdNMtQlJErPH7i.png" srcset="/img/loading.gif" lazyload></p>
 <p>每一行代表用户（user），每一列代表电影（item），矩阵的每一个元素表示用户给该电影的打分</p>
 <p>我们要做的就是生成两个子空间，用户空间和商品空间，每一个用户对应用户空间里面的一个向量，同理每一部电影对应商品空间的一个向量</p>
 <p>相对应的，就是把上面的矩阵分解<br>$$<br>\hat{R}=P\cdot Q^T<br>$$<br>$R$是$M\times N$​的矩阵（有M个用户，N部电影），$P$是$M\times k$的矩阵，每个用户对应P矩阵里面的一行向量，也就是每个用户用一个k维的向量表示；$Q$是$N\times k$的矩阵，每部电影用一个k维的向量表示。</p>
 <p>分解的过程一般使用<strong>梯度下降法</strong>或者<strong>最小二乘法</strong>去逼近原矩阵，把损失函数的值降为最小</p>
-<p><img src="https://i.loli.net/2021/08/14/Lmb23SFkW6AzwCt.png"></p>
+<p><img src="https://i.loli.net/2021/08/14/Lmb23SFkW6AzwCt.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>MF对线性回归和Poly2的改进</strong></p>
 <p>从上面的图可以看出，因为隐向量的存在，即使我们没有第一个用户对memento的打分情况，我们仍然可以训练出来他对memento的打分的情况。对数据稀疏性的问题有了较好的解决。</p>
 <p><strong>MF的缺点</strong></p>
@@ -338,13 +355,13 @@
 <h2 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h2><p>FM全称Factorization Machines（FM）<br>$$<br>y=w_0+\sum\limits_{i=1}^nw_ix_i+\sum\limits_{i=1}^n\sum\limits_{j=i+1}^n&lt;v_i,v_j&gt;x_ix_j<br>$$<br>对每一个特征，都分配一个向量$v$来表示，所有的向量$v_i\quad i\in n$组成一个矩阵，该矩阵就是机器学习需要学习的参数之一。</p>
 <p>若令该潜在的向量空间的维数为$k$维，也就是每个特征对应一个$k$维的向量，则学习相互作用项的复杂度为$O(nk)$。可以看出比Poly2的复杂度要低（一般令$k&lt;n$)</p>
 <p>且FM解决了数据稀疏性的问题，因为当我们需要$(A_1,B_1)$对应的相互作用权重的时候，我们可以通过$(A_1,B_2)$训练$A_1$对应的隐向量的参数，同样$(A_2,B_1)$也可以训练$B_1$对应的隐向量的参数。即使我们在训练集中没有$(A_1,B_1)$这个组合，我们也可以训练到对应的权重，因为一个相互交互项也会和其它交互项会有关系，也就是说得到一个样本，训练该样本的交互项的同时会潜在地训练与该交互项相关的其他的交互项，这样就使得即使我们没有在数据集中得到$(A_1,B_1)$交互项的信息，但是也可以训练到该交互项的权重</p>
-<p><img src="https://i.loli.net/2021/08/14/8GbAMTvFJNgIoj1.png"></p>
+<p><img src="https://i.loli.net/2021/08/14/8GbAMTvFJNgIoj1.png" srcset="/img/loading.gif" lazyload></p>
 <p>如图，我们把用户-项目交互项用one-hot来编码，每行对应一个用户和一个项目，同时还加入了一些辅助的信息（以改进MF的过于简单的矩阵分解算法），辅助信息可以是比如该用户对其他电影的打分，该用户观看的最后一步电影等等。</p>
 <p>FM的相互交互项还有降低计算复杂度的公式：</p>
-<p><img src="https://i.loli.net/2021/08/14/Qagf1UDtu5VYHn4.png"></p>
+<p><img src="https://i.loli.net/2021/08/14/Qagf1UDtu5VYHn4.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h2><p>FFM全称Field Aware Factorization Machines</p>
 <p>FFM是FM模型的改进算法，Field – 域</p>
-<p><img src="https://i.loli.net/2021/08/14/oV3qGn6yiWAm5Ll.png"></p>
+<p><img src="https://i.loli.net/2021/08/14/oV3qGn6yiWAm5Ll.png" srcset="/img/loading.gif" lazyload></p>
 <table>
 <thead>
 <tr>
@@ -408,474 +425,265 @@
 <p>但是直观上来看，$&lt;v_{male},v_{action}&gt;$和$&lt;v_{male},v_{northAmerica}&gt;$是由区别的，也就是说male这个域和不同的域的相关性是不同的，我们应该更细致地划分male和不同域之间的权重</p>
 <p>于是就有FFM的计算权重的方法：<br>$$<br>v_{male,genre}\cdot v_{action,gender}+v_{male,region}\cdot v_{NAmerica,gender}+v_{action,region}\cdot v_{NAmerica,genre}<br>$$<br>隐向量的个数变得更多</p>
 <p>众所周知，越复杂的模型就越容易过拟合，当数据量足够大的时候，我们才应该考虑使用FFM，数据量小的时候用FM效果更好</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://i.loli.net/2021/08/14/PSr7JUjhoxX9Yb1.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://i.loli.net/2021/08/14/PSr7JUjhoxX9Yb1.png" srcset="/img/loading.gif" lazyload></p>
 <p>英语参考原文，中间也加入了我自己的一些理解</p>
 <p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/an-intuitive-explanation-of-field-aware-factorization-machines-a8fee92ce29f">https://towardsdatascience.com/an-intuitive-explanation-of-field-aware-factorization-machines-a8fee92ce29f</a></p>
 
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" data-id="cktk41ip20007o4unbrsv9qn6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
-    </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "John Doe"
-        },
-        "headline": "An Intuitive Explanation of Field Aware Factorization Machines",
-        "image": "http://example.comhttps://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png",
-        "keywords": "ML",
-        "genre": "Technology",
-        "datePublished": "2021-08-14",
-        "dateCreated": "2021-08-14",
-        "dateModified": "2021-08-14",
-        "url": "http://example.com/2021/08/14/An Intuitive Explanation of Field Aware Factorization Machines/",
-        "description": "From LM to Poly2 to MF to FM to FFM
-Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)=w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$",
-        "wordCount": 76
-    }
-</script>
-
-</article>
-
-    <section id="comments">
-    
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-
-    
-    </section>
-
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
-    <div class="sidebar-top">
-        <p>follow:</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="twitter" href="https://twitter.com/zhouk18235739" target="_blank" rel="noopener">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="stack-overflow" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-stack-overflow"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/Mark-Sky" target="_blank" rel="noopener">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2021/08/20/Skip-Gram/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            Skip-Gram
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">日语杂学（1）</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
-    
-    <div class="widgets-container">
-        
-            
-                
-
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/09/07/BLNioCHqZO5Qf82.png)" alt="词法分析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
-                            <p class="item-title"><a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="title">词法分析</a></p>
-                            <p class="item-date"><time datetime="2021-09-07T13:51:08.000Z" itemprop="datePublished">2021-09-07</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/07/Direct%20Link%20Networks/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/09/06/wzPeg7VHbB9XKOa.png)" alt="Direct Link Networks" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
-                            <p class="item-title"><a href="/2021/09/07/Direct%20Link%20Networks/" class="title">Direct Link Networks</a></p>
-                            <p class="item-date"><time datetime="2021-09-07T13:32:26.000Z" itemprop="datePublished">2021-09-07</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/31/UQGviYcNXPy3Sel.png)" alt="编译原理入门" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
-                            <p class="item-title"><a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" class="title">编译原理入门</a></p>
-                            <p class="item-date"><time datetime="2021-08-31T09:13:44.000Z" itemprop="datePublished">2021-08-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/30/ueUXYyxVpCNMrm7.png)" alt="表义文字的魅力" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Language/">Language</a></p>
-                            <p class="item-title"><a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" class="title">表义文字的魅力</a></p>
-                            <p class="item-date"><time datetime="2021-08-30T10:09:05.000Z" itemprop="datePublished">2021-08-30</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/27/sWkiVBHw6lRtTY8.png)" alt="N2之路" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Language/">Language</a></p>
-                            <p class="item-title"><a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" class="title">N2之路</a></p>
-                            <p class="item-date"><time datetime="2021-08-27T08:38:06.000Z" itemprop="datePublished">2021-08-27</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Technology/">Technology</a><span class="category-list-count">7</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">8</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">tags</h3>
-        <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CN/" rel="tag">CN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chinese/" rel="tag">Chinese</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compile/" rel="tag">Compile</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Japanese/" rel="tag">Japanese</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">tag cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/CN/" style="font-size: 10px;">CN</a> <a href="/tags/Chinese/" style="font-size: 10px;">Chinese</a> <a href="/tags/Compile/" style="font-size: 15px;">Compile</a> <a href="/tags/Japanese/" style="font-size: 15px;">Japanese</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-            
-        
-    </div>
-</aside>
-
-                </div>
             </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="/" class="logo"></a>
-                </h1>
-                <p>&copy; 2021 John Doe</p>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
                 
-                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Technology/">Technology</a>
+                    
+                  </div>
                 
-            </div>
-            <div class="footer-plugins">
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/ML/">ML</a>
+                    
+                  </div>
+                
+              </div>
               
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/20/Skip-Gram/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Skip-Gram</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/">
+                        <span class="hidden-mobile">日语杂学（1）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-            </div>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
         </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    </div>
-    
-    
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
     <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
-    var disqus_url = 'http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/';
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
     </script>
 
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
 
 
 
 
-    
-        
-<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-share.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-video.min.js"></script>
-
-    
-    
-        
-<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-
-    
-    
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
-        </script>
-        
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML.js"></script>
-
-    
-
-    
-    
-    
 
 
 
-<!-- Custom Scripts -->
 
-<script src="/js/main.js"></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

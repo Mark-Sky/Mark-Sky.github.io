@@ -1,1022 +1,870 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-    <meta charset="utf-8" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>Hexo</title>
 
-    
-
-    
-    <title>Hexo</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-    
-
-    
-        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
-    
-
-    
-
-    
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-
-    
-<link rel="stylesheet" href="/libs/titillium-web/styles.css">
-
-    
-<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
-    
-<link rel="stylesheet" href="/css/style.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
-    
-<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
 
-    
-    
-        
-<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-
-    
-    
-        
-<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-
-    
-    
-    
-    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a href="/" class="logo"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
-                                </li>
-                            
-                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Language/">Language</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Technology/">Technology</a></li></ul>
-                                
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
-                                </li>
-                            
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-
-<script src="/js/insight.js"></script>
-
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    <em class="page-title-link" data-url="home">Home</em>
-    </h1>
-</div>
-
-                        <div class="main-body-content">
-                            
-
-    
-    
-        
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2021" class="archive-year"><i class="icon fa fa-calendar-o"></i>2021</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/09/07/BLNioCHqZO5Qf82.png)" alt="词法分析" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-09-07T13:51:08.000Z" itemprop="datePublished">2021-09-07</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">词法分析</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            词法分析相关概念注意区分词法单元的单元名和词素，词法单元是抽象层次更高的，词素则是具体的实例
-词法单元包含两个部分，单元名和属性，其中属性值是一个结构化的数据，其中包含词素，类型，第一次出现的位置，….编译时能够识别undefined variable，就是靠属性值中记录的第一次出现的位置来判定的
-
-如上图，一般词素就是具体的定义，比如说人定义的变量a,b,c等等，都是词素，而它们都可以抽象成词法
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/09/07/Direct%20Link%20Networks/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/09/06/wzPeg7VHbB9XKOa.png)" alt="Direct Link Networks" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/09/07/Direct%20Link%20Networks/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-09-07T13:32:26.000Z" itemprop="datePublished">2021-09-07</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/09/07/Direct%20Link%20Networks/">Direct Link Networks</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            链路层服务和帧
-帧(Framing)：在每个网络层数据报经过链路传送前，几乎所有的链路层协议都要用链路层帧封装起来。一个帧由一个数据字段和若干首部字段组成，网络层的数据报就插在数据字段中。帧的结构由链路层协议决定
-为了实现链路层的功能，不同的链路层协议会用不同的方法，由此会有不同的帧结构，下面还会继续说明，但是在这里简要看一下，HDLC协议为了链路层的差错检测功能采用循环冗余纠错码，而PPP则采用
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/31/UQGviYcNXPy3Sel.png)" alt="编译原理入门" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-31T09:13:44.000Z" itemprop="datePublished">2021-08-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/">编译原理入门</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            编译器和解释器编译器
-效率高，一次编译，多次运行
-通常目标程序是可执行的
-
-一个源代码文件，比如C文件，或者py文件，其内容并不能被机器识别运行，因此需要先编译为汇编语言，再转化为机器语言，在windows上的目标程序（可执行程序）就是exe文件，编译器只会编译一遍，生成一个可执行文件，以后用户只需要执行可执行文件，不需要再编译就可以运行，与源程序再也没有关系
-
-解释器
-直接利用用户提供的输入，执
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/30/ueUXYyxVpCNMrm7.png)" alt="表义文字的魅力" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Language/">Language</a>
-            </div>
-            <div class="date"><time datetime="2021-08-30T10:09:05.000Z" itemprop="datePublished">2021-08-30</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/">表义文字的魅力</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-只是作为一个外行人，来谈谈自己对表义文字的看法
-世界上的语言文字可以分为两种，表音文字与表义文字。而从它们的名字也可以立即知道两种文字的区别，前者的语言仅仅表示发音，世界上除了汉语外的文字全都是表音文字，如英语，德语，法语等等。而汉语，作为唯一的表义文字，现在仅仅在中国和日本，新加坡等地方使用，而只有中国以汉语作为国语全面使用的国家。我们在中国一直都在享受着汉语给我们带来的好处，但是我们自身却没
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/27/sWkiVBHw6lRtTY8.png)" alt="N2之路" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/27/N2%E4%B9%8B%E8%B7%AF/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Language/">Language</a>
-            </div>
-            <div class="date"><time datetime="2021-08-27T08:38:06.000Z" itemprop="datePublished">2021-08-27</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/">N2之路</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            在大二的暑假准备结束时，闲来无事，突然想写写自己的日语学习之路，不只是备考方面的经历，也想写一下中途的心路历程
-现在想想学日语的初心，当时就是想看番能自己看懂不用字幕。大概这也是很多人的初心吧，隔着语言的墙壁始终觉得看番不够感觉，于是就在大一的寒假的时候开始了日语学习之路。想来那是多简单纯粹的初心，当时确实是单纯的热爱吧。对二次元世界的热爱让我有了学习日语的动力，这个动力也持续了很久，让我坚持学习
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png)" alt="机器学习linux" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-25T08:44:28.000Z" itemprop="datePublished">2021-08-25</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/">机器学习linux</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            服务器后台训练nohup + &amp;用nohup和&amp;一起，即可使得进程在服务器的后台运行
-如果只用nohup，则ctrl+c会使得进程结束
-如果只用&amp;，则关闭终端会使得进程结束
-一般最简单的
-1nohup [Command] &amp;
-
-可以让程序在后台运行而不会因终端关闭或者断网而被终止，进程的输出会被默认重定向到nohup.out文件中
-比如
-1nohup python 
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/20/Skip-Gram/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/20/toOmJdU9CMyKbrF.png)" alt="Skip-Gram" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/20/Skip-Gram/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-20T08:44:28.000Z" itemprop="datePublished">2021-08-20</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/20/Skip-Gram/">Skip-Gram</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            应用
-给定一个中心单词centerWord，通过该算法可以预测出最有可能在该中心单词附近的单词context Words
-
-当训练集较小的时候，也能有很高的准确率，对比较少见的单词或短语的效果预测效果较好
-
-
-
-
-需要注意的是，Skip-Gram算法的最终目标并不是用于预测context Words，而是用于给出一个比较好的单词的向量表示，这也是为什么Word2Vec经常会和Skip-Gram一起
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png)" alt="An Intuitive Explanation of Field Aware Factorization Machines" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-14T08:24:10.000Z" itemprop="datePublished">2021-08-14</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/">An Intuitive Explanation of Field Aware Factorization Machines</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            From LM to Poly2 to MF to FM to FFM
-Linear Regression线性回归是最简单无脑的拟合一个因变量和一个或多个自变量之间函数关系的模型$$f(x_1,x_2)=w_1x_1+w_2x_2$$一般来说，线性回归模型不会表现得很好，因为它试图对每个自变量的行为分别拟合，而没有考虑到自变量之间有可能会有相互作用影响，也就是有可能$x_1$可能会依赖于$x_2$
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/14/9VdoGY3iy7eI4X1.jpg)" alt="日语杂学（1）" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Language/">Language</a>
-            </div>
-            <div class="date"><time datetime="2021-08-14T02:38:54.000Z" itemprop="datePublished">2021-08-14</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/">日语杂学（1）</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            ​    
-​    最近了解到的冷知识，第一次看到感觉有点震惊。平时总是说日语的汉字都是抄中国的，我在学习的时候也总是觉得这个词不就是中文的那个词吗，印象中总是日本把中国的东西搬了过去。
-​    像是“社会”“主义”，如果有人告诉我，这两个词是日本造的汉字，应该不太难接受，因为知道日本在明治维新后改革了国家体制，走上资本主义道路，思想也基本“脱亚入欧”，吸取了很多西方的先进的思想，中国在甲午海
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/08/13/Debugging-Gradient-Checking/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/13/l7Ttik9xOGbDRPH.png)" alt="Debugging Gradient Checking" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://example.com/2021/08/13/Debugging-Gradient-Checking/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Technology/">Technology</a>
-            </div>
-            <div class="date"><time datetime="2021-08-13T12:53:26.000Z" itemprop="datePublished">2021-08-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/08/13/Debugging-Gradient-Checking/">Debugging Gradient Checking</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            背景在很多机器学习的算法中，在训练模型的时候，我们都会经常使用梯度下降法来对模型中的需要学习的参数进行更新，而梯度下降法就必须要运用到导数的运算了，因此验证自己算出来的导数是否正确十分有必要，不然最后模型效果不理想却又不知道具体的原因就不好了
-
-原理回忆一下导数的数学推导, 假设$J:R\to R,\theta\in R$$$\frac{dJ{(\theta)}}{d\theta}=\lim\li
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
-    <div class="sidebar-top">
-        <p>follow:</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="twitter" href="https://twitter.com/zhouk18235739" target="_blank" rel="noopener">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="stack-overflow" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-stack-overflow"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/Mark-Sky" target="_blank" rel="noopener">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-    <div class="widgets-container">
-        
-            
-                
-
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/09/07/BLNioCHqZO5Qf82.png)" alt="词法分析" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
-                            <p class="item-title"><a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="title">词法分析</a></p>
-                            <p class="item-date"><time datetime="2021-09-07T13:51:08.000Z" itemprop="datePublished">2021-09-07</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/07/Direct%20Link%20Networks/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/09/06/wzPeg7VHbB9XKOa.png)" alt="Direct Link Networks" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
-                            <p class="item-title"><a href="/2021/09/07/Direct%20Link%20Networks/" class="title">Direct Link Networks</a></p>
-                            <p class="item-date"><time datetime="2021-09-07T13:32:26.000Z" itemprop="datePublished">2021-09-07</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/31/UQGviYcNXPy3Sel.png)" alt="编译原理入门" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Technology/">Technology</a></p>
-                            <p class="item-title"><a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" class="title">编译原理入门</a></p>
-                            <p class="item-date"><time datetime="2021-08-31T09:13:44.000Z" itemprop="datePublished">2021-08-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/30/ueUXYyxVpCNMrm7.png)" alt="表义文字的魅力" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Language/">Language</a></p>
-                            <p class="item-title"><a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" class="title">表义文字的魅力</a></p>
-                            <p class="item-date"><time datetime="2021-08-30T10:09:05.000Z" itemprop="datePublished">2021-08-30</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://i.loli.net/2021/08/27/sWkiVBHw6lRtTY8.png)" alt="N2之路" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Language/">Language</a></p>
-                            <p class="item-title"><a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" class="title">N2之路</a></p>
-                            <p class="item-date"><time datetime="2021-08-27T08:38:06.000Z" itemprop="datePublished">2021-08-27</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Technology/">Technology</a><span class="category-list-count">7</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">8</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">tags</h3>
-        <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CN/" rel="tag">CN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chinese/" rel="tag">Chinese</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compile/" rel="tag">Compile</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Japanese/" rel="tag">Japanese</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">tag cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/CN/" style="font-size: 10px;">CN</a> <a href="/tags/Chinese/" style="font-size: 10px;">Chinese</a> <a href="/tags/Compile/" style="font-size: 15px;">Compile</a> <a href="/tags/Japanese/" style="font-size: 15px;">Japanese</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-            
-        
-    </div>
-</aside>
-
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="/" class="logo"></a>
-                </h1>
-                <p>&copy; 2021 John Doe</p>
-                
-                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
-                
-            </div>
-            <div class="footer-plugins">
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ようこそわが家へ">
               
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
+          <img src="https://i.loli.net/2021/09/14/oSaJB5dPe2Zz76U.png" srcset="/img/loading.gif" lazyload alt="词法分析">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
+          词法分析
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/07/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-07 21:51" pubdate>
+              2021-09-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Technology/">Technology</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Compile/">Compile</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/09/07/Direct%20Link%20Networks/" target="_self">
+          <img src="https://i.loli.net/2021/09/06/X1tcrnm5uGSM6Wf.png" srcset="/img/loading.gif" lazyload alt="Direct Link Networks">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/09/07/Direct%20Link%20Networks/" target="_self">
+          Direct Link Networks
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/07/Direct%20Link%20Networks/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-07 21:32" pubdate>
+              2021-09-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Technology/">Technology</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CN/">CN</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" target="_self">
+          <img src="https://i.loli.net/2021/08/31/UQGviYcNXPy3Sel.png" srcset="/img/loading.gif" lazyload alt="编译原理入门">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" target="_self">
+          编译原理入门
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-31 17:13" pubdate>
+              2021-08-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Technology/">Technology</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Compile/">Compile</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" target="_self">
+          <img src="https://i.loli.net/2021/08/30/ueUXYyxVpCNMrm7.png" srcset="/img/loading.gif" lazyload alt="表义文字的魅力">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" target="_self">
+          表义文字的魅力
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/30/%E8%A1%A8%E4%B9%89%E6%96%87%E5%AD%97%E7%9A%84%E9%AD%85%E5%8A%9B/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-30 18:09" pubdate>
+              2021-08-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Language/">Language</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Chinese/">Chinese</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" target="_self">
+          <img src="https://i.loli.net/2021/08/27/sWkiVBHw6lRtTY8.png" srcset="/img/loading.gif" lazyload alt="N2之路">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" target="_self">
+          N2之路
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/27/N2%E4%B9%8B%E8%B7%AF/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-27 16:38" pubdate>
+              2021-08-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Language/">Language</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Japanese/">Japanese</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" target="_self">
+          <img src="https://i.loli.net/2021/08/25/lTtvkeRiQmU32Z8.png" srcset="/img/loading.gif" lazyload alt="机器学习linux">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" target="_self">
+          机器学习linux
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0linux/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-25 16:44" pubdate>
+              2021-08-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Technology/">Technology</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ML/">ML</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/20/Skip-Gram/" target="_self">
+          <img src="https://i.loli.net/2021/08/20/toOmJdU9CMyKbrF.png" srcset="/img/loading.gif" lazyload alt="Skip-Gram">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/20/Skip-Gram/" target="_self">
+          Skip-Gram
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/20/Skip-Gram/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-20 16:44" pubdate>
+              2021-08-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Technology/">Technology</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NLP/">NLP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" target="_self">
+          <img src="https://i.loli.net/2021/08/14/NUX8tiWzfRonDVF.png" srcset="/img/loading.gif" lazyload alt="An Intuitive Explanation of Field Aware Factorization Machines">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" target="_self">
+          An Intuitive Explanation of Field Aware Factorization Machines
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/14/An%20Intuitive%20Explanation%20of%20Field%20Aware%20Factorization%20Machines/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-14 16:24" pubdate>
+              2021-08-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Technology/">Technology</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ML/">ML</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" target="_self">
+          <img src="https://i.loli.net/2021/08/14/9VdoGY3iy7eI4X1.jpg" srcset="/img/loading.gif" lazyload alt="日语杂学（1）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" target="_self">
+          日语杂学（1）
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/14/%E6%97%A5%E8%AF%AD%E6%9D%82%E5%AD%A6%EF%BC%881%EF%BC%89/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-14 10:38" pubdate>
+              2021-08-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Language/">Language</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Japanese/">Japanese</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/13/Debugging-Gradient-Checking/" target="_self">
+          <img src="https://i.loli.net/2021/08/13/l7Ttik9xOGbDRPH.png" srcset="/img/loading.gif" lazyload alt="Debugging Gradient Checking">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/13/Debugging-Gradient-Checking/" target="_self">
+          Debugging Gradient Checking
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/13/Debugging-Gradient-Checking/" target="_self">
+          
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-13 20:53" pubdate>
+              2021-08-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Technology/">Technology</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ML/">ML</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     
 
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-            </div>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
         </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    </div>
-    
-    
-    <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
 
 
 
 
 
-    
-        
-<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-share.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-video.min.js"></script>
-
-    
-    
-        
-<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-
-    
-    
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
-        </script>
-        
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML.js"></script>
-
-    
-
-    
-    
-    
 
 
 
-<!-- Custom Scripts -->
 
-<script src="/js/main.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>
