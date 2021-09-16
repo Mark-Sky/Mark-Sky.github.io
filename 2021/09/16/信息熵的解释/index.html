@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>关于 - Hexo</title>
+  <title>信息熵的解释 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -34,6 +34,8 @@
     
   
 
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
 
 
@@ -66,7 +68,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -165,9 +167,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="关于">
+            <span class="h2" id="subtitle" title="信息熵的解释">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-16 11:51" pubdate>
+        2021年9月16日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      822 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -180,80 +219,109 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="https://i.loli.net/2021/09/15/Hdaq5gzQ6VElpKt.jpg" srcset="/img/loading.gif" lazyload
-                   class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">Mark-Sky</div>
-    <div class="about-intro">遠回りしてた今日だ</div>
-    <div class="about-icons">
-      
-        
-        
-        
-        <a href=https://github.com/Mark-Sky class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a href=https://space.bilibili.com/436234827 class="
-           hint--bottom hint--rounded"
-           aria-label=bilibili
-           target="_blank"
-        >
-          <i class="iconfont icon-bilibili" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a href=https://twitter.com/zhouk18235739 class="
-           hint--bottom hint--rounded"
-           aria-label=twitter
-           target="_blank"
-        >
-          <i class="iconfont icon-twitter-fill" aria-hidden="true"></i>
-          
-        </a>
-      
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">信息熵的解释</h1>
+            
+            <div class="markdown-body">
+              <h1 id="数学定义"><a href="#数学定义" class="headerlink" title="数学定义"></a>数学定义</h1><p>给定数据集$D$，D中第$i$类样本所占比例为$p_i(i=1,2,…,|Y|)$</p>
+<p>则该数据集的信息熵定义为<br>$$<br>Ent(D)= -\sum\limits_{i=1}^{|Y|}p_klog_2p_k<br>$$</p>
+<h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><p>信息熵可以理解为**$\frac{1}{p_k}$​的二进制编码长度的数学期望<strong>，更进一步，可以理解为</strong>数据集$D$的各个类别的稀有度的数学期望**</p>
+<h2 id="数学期望"><a href="#数学期望" class="headerlink" title="数学期望"></a>数学期望</h2><p>对于信息熵的数学定义，可以看成是如下数学期望<br>$$<br>E[log_2\frac{1}{p_k}]=\sum\limits_{i=1}^{|Y|}p_klog_2\frac{1}{p_k}<br>$$<br>$X_k = log_2\frac{1}{p_k}$表示随机变量X的分类为k时，其值$x_k$为$log_2\frac{1}{p_k}$<br>$$<br>E[X]=\sum\limits_{i=1}^{|Y|}p_kx_k<br>$$</p>
+<h2 id="稀有度"><a href="#稀有度" class="headerlink" title="稀有度"></a>稀有度</h2><p>$1/p_k$ 就表示该类别的稀有度，该值越大，则表示稀有程度越高</p>
+<p>而$log_2$则表示对稀有度进行二进制编码的长度，$log_21/p_k$​​越大，表示所需编码长度就越长。这个也不难理解，<strong>越稀有的事物，则描述难度就越高</strong>，而越常见的事物，描述就越简单。比如说，在二次元里，黄毛是很常见的，我们只需要用两个字就可以表示出来，但是最后输了的傲娇黄毛是比较稀缺的，我们需要用9个字才表示出来这个意思。在上面的自然语言例子里面，换一个角度看，我们只描述一个普遍的东西是比较简单的，只需要用一个对应的名词就可以表示出来，但是若在名词前面加上定语之类的，那么显然该事物的稀有程度就上升了</p>
+<p><img src="https://i.loli.net/2021/09/16/Ulr2NmF4fiQwW6b.png" srcset="/img/loading.gif" lazyload></p>
+<p>因此$log_21/p_k$同样表示类别的稀有程度</p>
+<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>$Ent(D)$越大，表示该数据集的存在的不同的类别越多，而且稀有类别的类别数也越多。</p>
+<p>极端地想，$D$数据集如下</p>
+<p>${1,2,3,4,5}$</p>
+<p>该数据集的每个类别的稀有程度都一样高，都只有$1/5$​，而且类别的数目也很多，则信息熵也会比较高</p>
+<p>而换一种比较高的信息熵的数据集，还可以像是下面这样</p>
+<p>${1,1,1,1,1,5}$</p>
+<p>该数据集存在一个稀有类别5，该稀有类别所占的期望会很大，导致信息熵比较高</p>
+<p>我们在决策树中做特征集划分的时候，就是要取出一个特征，使得用该特征可以把那些稀有类别都剔除出去，稀有类别为一个新的数据子集，还是用上面的例子，就是希望取出一个特征，能把上面的数据集划分成两个数据子集</p>
+<p>${1,1,1,1}$和${5}$</p>
+<p>如此，两个子集都不存在稀有类别了，在子集的范围内，1和5都是常见类别了，两个集合的信息熵都变为了0</p>
+<h1 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h1><p>$$<br>Gain(A)=Ent(D)-\sum\limits_{v=1}^V \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
+<p>极端地想，若我们划分出来的子集全部都不存在稀有类别，则$Ent(D^v)$​全都等于0，则该特征选取是最好的</p>
+<p>稀有程度的期望值越小，则$Gain(A)$的值就越大，该特征选取就越好</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Technology/">Technology</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/ML/">ML</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/16/%E9%99%8D%E7%BB%B4%E4%B8%8E%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/">
+                        <span class="hidden-mobile">降维与度量学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    <p>俺は世界の最強の人物なのだ</p>
+<!-- Custom -->
 
-  </div>
 
-  
-</article>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     
 
     
@@ -333,7 +401,11 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
 
 
@@ -366,6 +438,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
 
 
 
