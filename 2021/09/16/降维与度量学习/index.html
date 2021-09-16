@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      1.6k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      17
        分钟
     </span>
   
@@ -232,7 +232,60 @@
             <h1 style="display: none">降维与度量学习</h1>
             
             <div class="markdown-body">
-              <h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇博客并不打算把下面的所有内容都推导整理一遍，而只是把上课时老师讲的比较有意思的记录下来，也结合一些自己的理解吧。毕竟如果把所有内容都推导一遍那就相当于抄一遍书了</p>
+<h1 id="k近邻学习"><a href="#k近邻学习" class="headerlink" title="k近邻学习"></a>k近邻学习</h1><p>k近邻学习是懒惰学习的代表。指的是其在得到训练集的时候不学习，而是在得到了测试样本时再运行，实际上这个大概不属于传统意义上的机器学习，因为它没有模型参数之类的需要用训练集训练得到的，最简单的k近邻学习的唯一一个参数就是k，还是超参数</p>
+<p>注意区分k近邻学习和k-means聚类学习，前者是监督学习算法，而后者是无监督学习</p>
+<p>k近邻学习看起来好像和后面的内容没什么关系，实际上k近邻的一个重要部分就是距离计算</p>
+<ul>
+<li>选择不同的距离计算也就和后面的度量有关</li>
+<li>如何简化距离的计算和降维有关</li>
+</ul>
+<h2 id="NCA"><a href="#NCA" class="headerlink" title="NCA"></a>NCA</h2><p>NCA是k近邻学习的进阶版，它不是懒惰学习，而是需要学习马氏距离中的半正定矩阵$M$，这个是后面的度量学习的内容，这里只分析NCA的意义</p>
+<p>若NCA只关心k近邻学习的距离计算，那么其学习的度量矩阵和样本的维度$d$，相对应为$d\times d$​​。由于k近邻的距离计算就是普通的欧氏距离，所以有可能对于一些非线性空间的数据集的分类效果不是很好</p>
+<p><img src="https://i.loli.net/2021/09/16/dwZgTptXSPGDsvH.png" srcset="/img/loading.gif" lazyload></p>
+<p>如上图，要学习的$d(x_i,x_j)=\sqrt{(x_i-x_j)^TM(x_i-x_j)}$，能使得两个点的距离并不是欧氏距离而是测地线距离，才能使得分类效果较好</p>
+<p>若NCA还同时希望能使得距离计算的复杂度下降，那么需要如下转换一下$M$<br>$$<br>M = A^TA<br>$$<br>其中$A$为$d’\times d$​的矩阵，如此计算距离的式子可以变为如下<br>$$<br>d(x_i, x_j)=\sqrt{(Ax_i-Ax_j)^T(Ax_i-Ax_j)}<br>$$<br>就相当于把样本的维度降到了$d’$</p>
+<p>这样就解决了k近邻的维数灾难问题</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>k近邻分类器在判别分类时通常用多数投票法，但是NCA为了使得目标函数方便优化，替换为概率投票法，这样容易写出目标函数，也容易对目标函数进行优化，因为这样目标函数就是连续函数，NCA的优化目标：<br>$$<br>\min\limits_P\quad1-\sum\limits_{i=1}^m\sum\limits_{j\in \Omega_i}\frac{exp(-||A^Tx_i-A^Tx_j||^2_2)}{\sum_lexp(-||A^Tx_i-A^Tx_l|^2_2|)}<br>$$<br>目标函数的里层实际上类似于一个softmax函数，计算的是一种概率，表示任意样本$x_j$对$x_i$分类结果影响的概率</p>
+<h1 id="低维嵌入"><a href="#低维嵌入" class="headerlink" title="低维嵌入"></a>低维嵌入</h1><p><strong>低维嵌入和主成分分析一样，都是一种对数据降维的方法，但是其目标和PCA是不同的</strong></p>
+<p>它的目标是寻找一个子空间，使得子空间的距离和样本在原来的空间的距离是尽量保持一致的</p>
+<p>它可以转换为另一个问题：<strong>如何在低维子空间和高维空间之间保持样本之间的内积不变</strong>？</p>
+<p>设样本维度为$d$，样本个数为$m$，样本之间的内积矩阵在低维和高维空间都是$B(m\times m)$​，可以对其进行特征值分解<br>$$<br>B= V\Lambda V^T<br>$$<br>$V$为$m\times d$矩阵，$\Lambda$为$d\times d$矩阵</p>
+<p>然后只取$\Lambda$​中较大的$d’$个特征值，组成新的矩阵$\Lambda_1$，同时$V$也截断部分，变为$V_1$，$V_1$为$m\times d’$矩阵<br>$$<br>B=V_1\Lambda_1V^T_1<br>$$<br>这样操作后，内积矩阵$B$基本不会有太大变化，但是样本的维度由$d$降维$d’$</p>
+<p>样本在低维空间中组成的矩阵为$Z$,<br>$$<br>Z =\Lambda_1^{1/2}V_1^T\in R^{d’\times m}<br>$$</p>
+<p>$$<br>B=Z^TZ\in R^{m\times m}<br>$$</p>
+<p>关键是要记得，<strong>低维嵌入MDS的目标是保持距离不变，转换为保持内积不变，其做法是对样本的内积矩阵进行特征值分解</strong></p>
+<h1 id="主成分分析"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析</h1><p>关于PCA，主要就是想说，注意其和低维嵌入的区别</p>
+<ul>
+<li>它是对样本的协方差矩阵进行特征值分解，而不是内积矩阵</li>
+<li>目标是找到超平面，使得满足<ul>
+<li>最近重构性：样本点到这个超平面的距离都足够近</li>
+<li>最大可分性：样本点在这个超平面上的投影能尽可能分开</li>
+</ul>
+</li>
+</ul>
+<h2 id="内积矩阵和协方差矩阵"><a href="#内积矩阵和协方差矩阵" class="headerlink" title="内积矩阵和协方差矩阵"></a>内积矩阵和协方差矩阵</h2><p>内积矩阵是描述两个向量相似度的东西，若样本个数为m个，样本维度为n维，则内积矩阵会是$m\times m$维</p>
+<p><img src="C:\Users\11056\AppData\Roaming\Typora\typora-user-images\image-20210916204638077.png" srcset="/img/loading.gif" lazyload alt="image-20210916204638077"></p>
+<p>而协方差矩阵是从特征的角度研究向量，和上面正好是相反的，若样本个数为m个，样本维度为n维，则内积矩阵会是$n\times n$​维</p>
+<p>内积矩阵的计算是<br>$$<br>P=XX^T<br>$$<br>协方差矩阵的计算是<br>$$<br>C=X^TX<br>$$</p>
+<h1 id="流形学习"><a href="#流形学习" class="headerlink" title="流形学习"></a>流形学习</h1><p>关键：<strong>测地线距离（近似），保距</strong></p>
+<p>流形学习用一种类似于树的最短路径搜索的方法来近似得到点与点之间的测地线距离</p>
+<h1 id="度量学习"><a href="#度量学习" class="headerlink" title="度量学习"></a>度量学习</h1><p>降维的主要目的是希望找到一个“合适的”低维空间，而机器要学习的就是学出合适的距离的度量</p>
+<p>而一般来说，就是要学习马氏距离的矩阵$M$</p>
+<p>还要知道对M的学习的目标是什么，优化的是什么目标函数</p>
+<ul>
+<li><p>某种分类器的性能</p>
+<ul>
+<li>如以近邻分类器的性能为目标，得到NCA</li>
+</ul>
+</li>
+<li><p>该距离希望结合领域知识</p>
+<p><img src="https://i.loli.net/2021/09/16/KhTwcW467sZLDMk.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<p>这里有个有意思的地方，就是我们是最小化同类之间的距离，同时令异类之间的距离大于1，但是没有用最大化异类之间的距离，同时令同类之间的距离小于某个值，因为最大化是趋向无穷的，如果优化时目标为最大化，很容易导致M的结果有很多问题，而最小化只能到0，一般来说优化都是最小化而没有最大化的</p>
+<p><img src="https://i.loli.net/2021/09/16/ZHKPqEAzyXrxv59.png" srcset="/img/loading.gif" lazyload></p>
+
             </div>
             <hr>
             <div>
