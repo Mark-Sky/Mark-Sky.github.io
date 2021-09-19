@@ -4,6 +4,81 @@
   
   
   <entry>
+    <title>网络层</title>
+    <link href="/2021/09/18/%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    <url>/2021/09/18/%E7%BD%91%E7%BB%9C%E5%B1%82/</url>
+    
+    <content type="html"><![CDATA[<h1 id="路由和转发"><a href="#路由和转发" class="headerlink" title="路由和转发"></a>路由和转发</h1><h2 id="英文"><a href="#英文" class="headerlink" title="英文"></a>英文</h2><p>路由 – routing/switch</p><p>转发 – forward</p><p>分组 – packet</p><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><ul><li>路由是指决定分组从发送节点到目的节点所经过的路径，也就是选择经过哪些路由器交换机转发<ul><li>通常路由就是选择最短路径，或者最小成本路径</li></ul></li></ul><img src="https://i.loli.net/2021/09/18/xrSEUnHDFmYpC7f.png" style="zoom:67%;" /><ul><li>转发是指将分组从一个输入链路接口转移到适当的输出链路接口的路由器本地动作<ul><li>包含错误处理，排队，调度等过程</li></ul></li></ul><img src="https://i.loli.net/2021/09/18/7NbQwcAq6xKsBCD.png" style="zoom: 67%;" /><h2 id="和其他层关系"><a href="#和其他层关系" class="headerlink" title="和其他层关系"></a>和其他层关系</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>Technology</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CN</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>动漫台词抄录</title>
+    <link href="/2021/09/18/%E5%8A%A8%E6%BC%AB%E5%8F%B0%E8%AF%8D%E6%8A%84%E5%BD%95/"/>
+    <url>/2021/09/18/%E5%8A%A8%E6%BC%AB%E5%8F%B0%E8%AF%8D%E6%8A%84%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉到了大三开始变得闲了下来，总要找点事干干。这个将会是一个持续更新的系列，排名不分先后，想到哪个就会更新，算是记录笔者的二次元轨迹吧</p><h1 id="恋爱小行星"><a href="#恋爱小行星" class="headerlink" title="恋爱小行星"></a>恋爱小行星</h1><p>这部番是我第一步追着更新看的番，真的是老兵回忆录了，看到完结撒花的时候真的很舍不得</p><p>从那时候完全不懂她们在说什么到现在能听译下来</p><div class="note note-success">            <p>みんな　好きなものや得意なもの　その人の世界を持ってる</p><p>ひとりでいたら　世界はひとつだけと</p><p>それが繋がったら　たくさんの可能性がどんどん広がって</p><p>大きくて　未知数で</p><p>宇宙みたい</p>          </div><div class="note note-primary">            <p>大家热爱的事物，擅长的事物都不同，都拥有自己的世界</p><p>一个人的话只有一个世界</p><p>这些互相连接的话</p><p>就会展开许多的可能性</p><p>广大 未知</p><p>就像是宇宙一样</p>          </div><p><img src="https://i.loli.net/2021/09/18/clP5r6pnWGstjDL.png"></p><p><img src="https://i.loli.net/2021/09/18/hOKpePdcbrQV1xF.png"></p><p><img src="https://i.loli.net/2021/09/18/KXYB69nemGhw5Vs.png">     <img src="https://i.loli.net/2021/09/18/LwTG9x4ioCHXNqW.png"></p><p>这段话配上背景的气氛和配乐真的很有感觉啊，番里面出现了几个只出现了很短时间的配角，但是每个配角都没有强行插入的感觉，只是日常很普通的相遇，然后交流，到分开，每个人都给这故事的日常的感觉增色许多，每个人都会有自己的世界，和主角团她们相遇，让故事里的世界更加丰富多彩。因为是一部日常番，所以并没有必要插入配角来推动情节发展，加入的这些配角或许只是让结尾的这段话更有含义吧。每个人相遇在一起，所能创造的世界就和那星空一样，壮美，深邃。还有米拉的眼睛，画的也很像宇宙一样漂亮</p><hr><p>（未完待续，持续更新中…）</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Language</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Japanese</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>信号的时域分析</title>
+    <link href="/2021/09/17/%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90/"/>
+    <url>/2021/09/17/%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这门课应该是电子专业的必修课，是在微积分，复变函数，信号与系统的基础之上建立起来的一个学科。但是我自己并不是电子专业的，学的是人工智能专业，应该侧重点会和电子专业学的时候会不同。</p><h1 id="信号的分类"><a href="#信号的分类" class="headerlink" title="信号的分类"></a>信号的分类</h1><h2 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h2><p>对于一个给定的解析式的信号，会有一些判定该信号是否为周期信号的定理</p><ul><li>周期信号$x(t)$，$y(t)$的周期为$T_1,T_2$，若周期之比$T_1/T_2$为有理数，则其<strong>和信号</strong>$x(t)+y(t)$仍为周期信号，其周期为$T_1,T_2$的最小公倍数</li></ul><div class="note note-success">            <p>周期信号可能分解为周期信号，</p><p><strong>非周期信号也可能分解为周期信号</strong></p>          </div><ul><li>离散信号可视为连续信号和周期脉冲的乘积，因此可用相关积信号的性质对其分析</li></ul><p><img src="https://i.loli.net/2021/09/17/LgawsyWuIYC4xQm.png"></p><div class="note note-success">            <p>两连续周期信号之和不一定是周期信号，而两周期序列之和一定是周期序列</p>          </div><h2 id="能量信号与功率信号"><a href="#能量信号与功率信号" class="headerlink" title="能量信号与功率信号"></a>能量信号与功率信号</h2><p><img src="https://i.loli.net/2021/09/17/Js4cebhZPaVlRHo.png"></p><div class="note note-success">            <p>信号𝑥(𝑡)可以是一个既非功率信号，又非能量信号。但一个信号不可能同时既是功率信号，又是能量信号。</p>          </div><h2 id="因果信号"><a href="#因果信号" class="headerlink" title="因果信号"></a>因果信号</h2><p>非因果信号指的是在时间零点前有非零值</p><h1 id="典型的信号"><a href="#典型的信号" class="headerlink" title="典型的信号"></a>典型的信号</h1><h2 id="基本连续信号"><a href="#基本连续信号" class="headerlink" title="基本连续信号"></a>基本连续信号</h2><h3 id="直流信号"><a href="#直流信号" class="headerlink" title="直流信号"></a>直流信号</h3><h3 id="正弦信号"><a href="#正弦信号" class="headerlink" title="正弦信号"></a>正弦信号</h3><h3 id="实指数信号"><a href="#实指数信号" class="headerlink" title="实指数信号"></a>实指数信号</h3><h3 id="虚指数信号"><a href="#虚指数信号" class="headerlink" title="虚指数信号"></a>虚指数信号</h3><ul><li><p>解析式：$x(t)=Ae^{\alpha t}$，且其中$\alpha$为纯虚数</p></li><li><p>周期性：$x(t)=x(t+T_0)=e^{jw_0}=e^{jw_0(t+T_0)}$</p></li><li><p>$T_0=\frac{2\pi}{|w_0|}$</p></li><li><p>虚指数信号由欧拉公式可分解为正弦信号和余弦信号相加的形式<br>$$<br>e^{j\omega_0t}=\cos\omega_0t+j\sin w_0t<br>$$</p></li></ul><h3 id="复指数信号"><a href="#复指数信号" class="headerlink" title="复指数信号"></a>复指数信号</h3><p>要先搞清楚虚数与极坐标的关系</p><p>虚数z可以写成笛卡尔坐标的形式<br>$$<br>z=x+iy<br>$$<br>也可以写成极坐标的表达形式<br>$$<br>z = |z|e^{i\theta}<br>$$<br>两种表达形式可以互相转化（欧拉公式）<br>$$<br>|z|=\sqrt{x^2+y^2}<br>$$</p><p>$$<br>\theta = \arctan (y/x)<br>$$</p><p><img src="https://i.loli.net/2021/09/17/zpIBK3Md2iGRV7t.png"></p><h3 id="抽样信号"><a href="#抽样信号" class="headerlink" title="抽样信号"></a>抽样信号</h3><ul><li>解析式：$Sa(t)=\frac{\sin t}{t}$</li><li><img src="https://i.loli.net/2021/09/17/HmJOxCzNi8nhXcq.png"></li><li><img src="https://i.loli.net/2021/09/17/EKLj7TkutAVUMxd.png"></li><li></li></ul><h1 id="信号的分解"><a href="#信号的分解" class="headerlink" title="信号的分解"></a>信号的分解</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>Technology</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DSP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>信息熵的解释</title>
     <link href="/2021/09/16/%E4%BF%A1%E6%81%AF%E7%86%B5%E7%9A%84%E8%A7%A3%E9%87%8A/"/>
     <url>/2021/09/16/%E4%BF%A1%E6%81%AF%E7%86%B5%E7%9A%84%E8%A7%A3%E9%87%8A/</url>

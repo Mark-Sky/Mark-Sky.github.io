@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>信息熵的解释 - Hexo</title>
+  <title>信号的时域分析 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -167,7 +167,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="信息熵的解释">
+            <span class="h2" id="subtitle" title="信号的时域分析">
               
             </span>
 
@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-16 11:51" pubdate>
-        2021年9月16日 中午
+      <time datetime="2021-09-17 15:52" pubdate>
+        2021年9月17日 下午
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      822 字
+      542 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      6
        分钟
     </span>
   
@@ -229,31 +229,53 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">信息熵的解释</h1>
+            <h1 style="display: none">信号的时域分析</h1>
             
             <div class="markdown-body">
-              <h1 id="数学定义"><a href="#数学定义" class="headerlink" title="数学定义"></a>数学定义</h1><p>给定数据集$D$，D中第$i$类样本所占比例为$p_i(i=1,2,…,|Y|)$</p>
-<p>则该数据集的信息熵定义为<br>$$<br>Ent(D)= -\sum\limits_{i=1}^{|Y|}p_klog_2p_k<br>$$</p>
-<h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><p>信息熵可以理解为**$\frac{1}{p_k}$​的二进制编码长度的数学期望<strong>，更进一步，可以理解为</strong>数据集$D$的各个类别的稀有度的数学期望**</p>
-<h2 id="数学期望"><a href="#数学期望" class="headerlink" title="数学期望"></a>数学期望</h2><p>对于信息熵的数学定义，可以看成是如下数学期望<br>$$<br>E[log_2\frac{1}{p_k}]=\sum\limits_{i=1}^{|Y|}p_klog_2\frac{1}{p_k}<br>$$<br>$X_k = log_2\frac{1}{p_k}$表示随机变量X的分类为k时，其值$x_k$为$log_2\frac{1}{p_k}$<br>$$<br>E[X]=\sum\limits_{i=1}^{|Y|}p_kx_k<br>$$</p>
-<h2 id="稀有度"><a href="#稀有度" class="headerlink" title="稀有度"></a>稀有度</h2><p>$1/p_k$ 就表示该类别的稀有度，该值越大，则表示稀有程度越高</p>
-<p>而$log_2$则表示对稀有度进行二进制编码的长度，$log_21/p_k$​​越大，表示所需编码长度就越长。这个也不难理解，<strong>越稀有的事物，则描述难度就越高</strong>，而越常见的事物，描述就越简单。比如说，在二次元里，黄毛是很常见的，我们只需要用两个字就可以表示出来，但是最后输了的傲娇黄毛是比较稀缺的，我们需要用9个字才表示出来这个意思。在上面的自然语言例子里面，换一个角度看，我们只描述一个普遍的东西是比较简单的，只需要用一个对应的名词就可以表示出来，但是若在名词前面加上定语之类的，那么显然该事物的稀有程度就上升了</p>
-<p><img src="https://i.loli.net/2021/09/16/Ulr2NmF4fiQwW6b.png" srcset="/img/loading.gif" lazyload></p>
-<p>因此$log_21/p_k$同样表示类别的稀有程度</p>
-<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>$Ent(D)$越大，表示该数据集的存在的不同的类别越多，而且稀有类别的类别数也越多。</p>
-<p>极端地想，$D$数据集如下</p>
-<p>${1,2,3,4,5}$</p>
-<p>该数据集的每个类别的稀有程度都一样高，都只有$1/5$​，而且类别的数目也很多，则信息熵也会比较高</p>
-<p>而换一种比较高的信息熵的数据集，还可以像是下面这样</p>
-<p>${1,1,1,1,1,5}$</p>
-<p>该数据集存在一个稀有类别5，该稀有类别所占的期望会很大，导致信息熵比较高</p>
-<p>我们在决策树中做特征集划分的时候，就是要取出一个特征，使得用该特征可以把那些稀有类别都剔除出去，稀有类别为一个新的数据子集，还是用上面的例子，就是希望取出一个特征，能把上面的数据集划分成两个数据子集</p>
-<p>${1,1,1,1}$和${5}$</p>
-<p>如此，两个子集都不存在稀有类别了，在子集的范围内，1和5都是常见类别了，两个集合的信息熵都变为了0</p>
-<h1 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h1><p>$$<br>Gain(A)=Ent(D)-\sum\limits_{v=1}^V \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
-<p>极端地想，若我们划分出来的子集全部都不存在稀有类别，则$Ent(D^v)$​全都等于0，则该特征选取是最好的</p>
-<p>稀有程度的期望值越小，则$Gain(A)$的值就越大，该特征选取就越好</p>
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这门课应该是电子专业的必修课，是在微积分，复变函数，信号与系统的基础之上建立起来的一个学科。但是我自己并不是电子专业的，学的是人工智能专业，应该侧重点会和电子专业学的时候会不同。</p>
+<h1 id="信号的分类"><a href="#信号的分类" class="headerlink" title="信号的分类"></a>信号的分类</h1><h2 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h2><p>对于一个给定的解析式的信号，会有一些判定该信号是否为周期信号的定理</p>
+<ul>
+<li>周期信号$x(t)$，$y(t)$的周期为$T_1,T_2$，若周期之比$T_1/T_2$为有理数，则其<strong>和信号</strong>$x(t)+y(t)$仍为周期信号，其周期为$T_1,T_2$的最小公倍数</li>
+</ul>
+<div class="note note-success">
+            <p>周期信号可能分解为周期信号，</p><p><strong>非周期信号也可能分解为周期信号</strong></p>
+          </div>
 
+<ul>
+<li>离散信号可视为连续信号和周期脉冲的乘积，因此可用相关积信号的性质对其分析</li>
+</ul>
+<p><img src="https://i.loli.net/2021/09/17/LgawsyWuIYC4xQm.png" srcset="/img/loading.gif" lazyload></p>
+<div class="note note-success">
+            <p>两连续周期信号之和不一定是周期信号，而两周期序列之和一定是周期序列</p>
+          </div>
+
+<h2 id="能量信号与功率信号"><a href="#能量信号与功率信号" class="headerlink" title="能量信号与功率信号"></a>能量信号与功率信号</h2><p><img src="https://i.loli.net/2021/09/17/Js4cebhZPaVlRHo.png" srcset="/img/loading.gif" lazyload></p>
+<div class="note note-success">
+            <p>信号𝑥(𝑡)可以是一个既非功率信号，又非能量信号。但一个信号不可能同时既是功率信号，又是能量信号。</p>
+          </div>
+
+<h2 id="因果信号"><a href="#因果信号" class="headerlink" title="因果信号"></a>因果信号</h2><p>非因果信号指的是在时间零点前有非零值</p>
+<h1 id="典型的信号"><a href="#典型的信号" class="headerlink" title="典型的信号"></a>典型的信号</h1><h2 id="基本连续信号"><a href="#基本连续信号" class="headerlink" title="基本连续信号"></a>基本连续信号</h2><h3 id="直流信号"><a href="#直流信号" class="headerlink" title="直流信号"></a>直流信号</h3><h3 id="正弦信号"><a href="#正弦信号" class="headerlink" title="正弦信号"></a>正弦信号</h3><h3 id="实指数信号"><a href="#实指数信号" class="headerlink" title="实指数信号"></a>实指数信号</h3><h3 id="虚指数信号"><a href="#虚指数信号" class="headerlink" title="虚指数信号"></a>虚指数信号</h3><ul>
+<li><p>解析式：$x(t)=Ae^{\alpha t}$，且其中$\alpha$为纯虚数</p>
+</li>
+<li><p>周期性：$x(t)=x(t+T_0)=e^{jw_0}=e^{jw_0(t+T_0)}$</p>
+</li>
+<li><p>$T_0=\frac{2\pi}{|w_0|}$</p>
+</li>
+<li><p>虚指数信号由欧拉公式可分解为正弦信号和余弦信号相加的形式<br>$$<br>e^{j\omega_0t}=\cos\omega_0t+j\sin w_0t<br>$$</p>
+</li>
+</ul>
+<h3 id="复指数信号"><a href="#复指数信号" class="headerlink" title="复指数信号"></a>复指数信号</h3><p>要先搞清楚虚数与极坐标的关系</p>
+<p>虚数z可以写成笛卡尔坐标的形式<br>$$<br>z=x+iy<br>$$<br>也可以写成极坐标的表达形式<br>$$<br>z = |z|e^{i\theta}<br>$$<br>两种表达形式可以互相转化（欧拉公式）<br>$$<br>|z|=\sqrt{x^2+y^2}<br>$$</p>
+<p>$$<br>\theta = \arctan (y/x)<br>$$</p>
+<p><img src="https://i.loli.net/2021/09/17/zpIBK3Md2iGRV7t.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="抽样信号"><a href="#抽样信号" class="headerlink" title="抽样信号"></a>抽样信号</h3><ul>
+<li>解析式：$Sa(t)=\frac{\sin t}{t}$</li>
+<li><img src="https://i.loli.net/2021/09/17/HmJOxCzNi8nhXcq.png" srcset="/img/loading.gif" lazyload></li>
+<li><img src="https://i.loli.net/2021/09/17/EKLj7TkutAVUMxd.png" srcset="/img/loading.gif" lazyload></li>
+<li></li>
+</ul>
+<h1 id="信号的分解"><a href="#信号的分解" class="headerlink" title="信号的分解"></a>信号的分解</h1>
             </div>
             <hr>
             <div>
@@ -270,7 +292,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/ML/">ML</a>
+                      <a class="hover-with-bg" href="/tags/DSP/">DSP</a>
                     
                   </div>
                 
@@ -287,9 +309,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/17/%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90/">
+                      <a href="/2021/09/18/%E5%8A%A8%E6%BC%AB%E5%8F%B0%E8%AF%8D%E6%8A%84%E5%BD%95/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">信号的时域分析</span>
+                        <span class="hidden-mobile">动漫台词抄录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -297,8 +319,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/09/16/%E9%99%8D%E7%BB%B4%E4%B8%8E%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/">
-                        <span class="hidden-mobile">降维与度量学习</span>
+                      <a href="/2021/09/16/%E4%BF%A1%E6%81%AF%E7%86%B5%E7%9A%84%E8%A7%A3%E9%87%8A/">
+                        <span class="hidden-mobile">信息熵的解释</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
