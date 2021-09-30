@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>网络层 - Hexo</title>
+  <title>近端梯度下降 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -167,7 +167,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="网络层">
+            <span class="h2" id="subtitle" title="近端梯度下降">
               
             </span>
 
@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-18 22:14" pubdate>
-        2021年9月18日 晚上
+      <time datetime="2021-09-23 15:06" pubdate>
+        2021年9月23日 下午
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      198 字
+      1.2k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      14
        分钟
     </span>
   
@@ -229,30 +229,45 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">网络层</h1>
+            <h1 style="display: none">近端梯度下降</h1>
             
             <div class="markdown-body">
-              <h1 id="路由和转发"><a href="#路由和转发" class="headerlink" title="路由和转发"></a>路由和转发</h1><h2 id="英文"><a href="#英文" class="headerlink" title="英文"></a>英文</h2><p>路由 – routing/switch</p>
-<p>转发 – forward</p>
-<p>分组 – packet</p>
-<p>多说一句，感觉【路由】这个翻译的真的不错，又有那么点音译的意味（粤语中的“路”和routing的rou的发音基本是一样的，但是又兼顾了汉字的意思–“由”哪条“路”到哪条“路”</p>
-<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><ul>
-<li>路由是指决定分组从发送节点到目的节点所经过的路径，也就是选择经过哪些路由器交换机转发<ul>
-<li>通常路由就是选择最短路径，或者最小成本路径</li>
-</ul>
-</li>
-</ul>
-<img src="https://i.loli.net/2021/09/18/xrSEUnHDFmYpC7f.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
-
+              <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>为了防止过拟合的现象，我们通常会对目标函数引入正则项，由于我们的重点是近端梯度下降，所以我们以最简单的线性回归模型为例，以平方误差为损失函数<br>$$<br>\min\limits_w \sum\limits_{i=1}^m (y_i-w^Tx_i)^2<br>$$<br>若希望参数$w$的分量均衡，也即非零分量个数尽量稠密，则用$L_2$范数<br>$$<br>\min\limits_w \sum\limits_{i=1}^m (y_i-w^Tx_i)^2+\lambda ||w||_2^2<br>$$</p>
+<p>若希望非零分量个数尽量少，则使用$L_1$范数<br>$$<br>\min\limits_w \sum\limits_{i=1}^m (y_i-w^Tx_i)^2+\lambda ||w||_1<br>$$<br>上面的这些都是西瓜书里面直接列出的陈述，我们再用画图的方法来观察一下为什么使用$L_1$范数的时候，得到的参数会比较稀疏</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20210923191125.png" srcset="/img/loading.gif" lazyload></p>
+<p>假设x仅有两个特征属性，那么$w$就只有两个分量$w_1, w_2$。</p>
+<p>图中的平方误差项等值线也就对应着经验误差<br>$$<br>\sum\limits_{i=1}^m (y_i-w^Tx_i)^2<br>$$<br>该项看作二次函数，则可以画出对应的椭圆，实际上相当于标准椭圆移位<br>$$<br>\frac{w_1^2}{a^2}+\frac{w_2^2}{b^2}=1<br>$$<br>于是就得到了平方误差等值线，越靠近中心，则说明经验误差越小</p>
+<p>同样的，若是$L_1$范数，等值线则为下，k越大说明离中心越远，结构误差项越大，而且显然该方程对应图中的正方形<br>$$<br>|w_1|+|w_2|=k<br>$$<br>若是$L_2$范数，等值线为下，k越大说明离中心越远，结构误差项越大，该方程对应图中的同心圆<br>$$<br>w_1^2+w_2^2=k<br>$$<br>我们引入正则项，在图中表现为，本来我们只需要取到一个较小的椭圆上面的点，但现在需要<strong>既使得该点靠近经验误差对应的椭圆的中心，又靠近结构误差对应的正方形的中心</strong></p>
+<p>而在图中可以直观看到若选择$L_1$范数作为正则项，交点一般出现在正方形的顶点处，而这些顶点就是其中的某一个分量为0的点，因此可以使得参数的分量尽量的稀疏</p>
+<h1 id="L1正则化问题"><a href="#L1正则化问题" class="headerlink" title="L1正则化问题"></a>L1正则化问题</h1><p>$$<br>\min\limits_w \sum\limits_{i=1}^m (y_i-w^Tx_i)^2+\lambda ||w||_1<br>$$</p>
+<p>$L_1$范数正则化的问题和$L_2$范数正则化的问题求解是不同的，因为$L_2$范数是连续可导的，因此可以使用随机梯度下降法（SGD）- 通过对当前所处点求导数然后沿着导数的方向下降，若是凸优化问题，则最后可以得到一个最优解。</p>
+<p>但是$L_1$ <strong>范数不是一直可导的</strong>，因为绝对值的存在，它在那些0点都是不可导的，从上面的图就可以很清楚直观看出来。因此不能直接求导然后更新参数</p>
+<h1 id="近端梯度下降（PGD）"><a href="#近端梯度下降（PGD）" class="headerlink" title="近端梯度下降（PGD）"></a>近端梯度下降（PGD）</h1><blockquote>
+<p>与经典的梯度下降法和随机梯度下降法相比，近端梯度下降法的适用范围相对狭窄。对于凸优化问题，当其目标函数存在不可微部分（例如目标函数中有 L1-范数或迹范数）时，近端梯度下降法才会派上用场。</p>
+</blockquote>
+<p>近端梯度下降所适用的函数一般如下：<br>$$<br>h(x)=f(x)+g(x)<br>$$<br>其中$f(x)$为可微的凸函数，$g(x)$为不可微或局部不可微的凸函数</p>
+<p>这里换一个记号，把例子中的样本数据x看作常数，把w看作函数的参数<br>$$<br>f(w)=\sum\limits_{i=1}^m (y_i-w^Tx_i)^2<br>$$</p>
+<p>$$<br>g(w)=\lambda ||w||_1<br>$$</p>
 <ul>
-<li>转发是指将分组从一个输入链路接口转移到适当的输出链路接口的路由器本地动作<ul>
-<li>包含错误处理，排队，调度等过程</li>
-</ul>
+<li><p>写出$f(w)$的二阶泰勒展式<br>$$<br>f(w)=f(w_k)+&lt;\nabla f(w_k), w-w_k&gt;+\frac{1}{2}(w-w_k)^T\frac{\partial^2 f(w_k)}{\partial w_k^2}(w-w_k)<br>$$</p>
+</li>
+<li><p>假设$f(x)$满足L-Lipschitz条件，即存在常数$L&gt;0$，使得<br>$$<br>||\nabla f(x’)-\nabla f(x) ||\leq L|||x’-x||^2_2<br>$$</p>
+</li>
+<li><p>将上式代入到二阶泰勒展式，然后进行配方</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20210923231359.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>代入到原问题中，可以得到（求和项的每个$f$函数都是对应样本不同的）<br>$$<br>\min\limits_w\sum\limits_{i=1}^m\frac{L}{2}||w-(w_k-\frac{1}{L}\nabla f(w_k))||^2+\lambda||w||_1<br>$$</p>
+</li>
+<li><p>每次在$w_k$的附近寻找最优点，不断迭代<br>$$<br>x_{k+1}=\min\limits_w\sum\limits_{i=1}^m\frac{L}{2}||w-(w_k-\frac{1}{L}\nabla f(w_k))||^2+\lambda||w||_1<br>$$</p>
+</li>
+<li><p>假设$z=w_k-1/L\nabla f(w_k)$，上式有闭式解（实际上就相当于对一个有多种情况的二次函数进行分类讨论，每种情况都会有其闭式解，只需要得到最小的就行）</p>
 </li>
 </ul>
-<img src="https://i.loli.net/2021/09/18/7NbQwcAq6xKsBCD.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20210923231312.png" srcset="/img/loading.gif" lazyload></p>
+<p>从上面的式子画图，我们可以发现，正则项相当于把$x^i_{k+1}=z^i$这个线性函数向中间拉扯了</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20PicturesE77E9F23B1777EE772381A6E7E467C9A.png" srcset="/img/loading.gif" lazyload></p>
+<p>这也符合了$L_1$正则项能使得参数的分量尽量稀疏的说法</p>
 
-<h2 id="和其他层关系"><a href="#和其他层关系" class="headerlink" title="和其他层关系"></a>和其他层关系</h2>
             </div>
             <hr>
             <div>
@@ -269,7 +284,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/CN/">CN</a>
+                      <a class="hover-with-bg" href="/tags/ML/">ML</a>
                     
                   </div>
                 
@@ -286,9 +301,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/21/%E5%8A%A8%E6%BC%AB%E5%8F%B0%E8%AF%8D%E6%8A%84%E5%BD%95/">
+                      <a href="/2021/09/28/%E6%97%A5%E6%9C%AC%E8%AF%AD%E6%91%98%E5%BD%95/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">动漫台词抄录</span>
+                        <span class="hidden-mobile">《日本语》摘录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -296,8 +311,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/09/17/%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90/">
-                        <span class="hidden-mobile">信号的时域分析</span>
+                      <a href="/2021/09/21/%E5%8A%A8%E6%BC%AB%E5%8F%B0%E8%AF%8D%E6%8A%84%E5%BD%95/">
+                        <span class="hidden-mobile">动漫台词抄录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
