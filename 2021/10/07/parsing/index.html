@@ -1,0 +1,672 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>依存句法解析 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>山里有座庙</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="依存句法解析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-07 10:13" pubdate>
+        2021年10月7日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      34
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">依存句法解析</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这次花了两天时间做了第三次作业，实际上感觉给的提示太多了，如果认真做的话应该很快就能做完。最后发现这个依存句法解析的学习是一个<strong>监督学习</strong>，也就是需要人工标签才能学习，还是有点失望。对比起论文</p>
+<p><a target="_blank" rel="noopener" href="https://nlp.stanford.edu/pubs/emnlp2014-depparser.pdf">emnlp2014-depparser.pdf (stanford.edu)</a></p>
+<p>在作业中构建的模型实际上是一个简化了很多的模型</p>
+<h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><h2 id="Adam-Optimization"><a href="#Adam-Optimization" class="headerlink" title="Adam Optimization"></a>Adam Optimization</h2><p>该优化方法是对随机梯度下降方法（SGD）的改进</p>
+<p>令在一轮的训练中，参数$\theta$的导数为$\nabla \theta$，学习率为$lr$</p>
+<p>传统梯度下降方法下，参数的更新公式为<br>$$<br>\theta \gets \theta-lr\times\nabla\theta<br>$$<br>在Adam方法中，超参数除了学习率$lr$外，还有$\beta_1,\beta_2,\alpha$<br>$$<br>m\gets\beta_1m+(1-\beta_1)\nabla\theta<br>$$</p>
+<p>$$<br>v\gets \beta_2v+(1-\beta_2)(\nabla\theta\odot\nabla\theta)<br>$$</p>
+<p>$$<br>\theta\gets\theta-\alpha m /\sqrt{v}<br>$$</p>
+<p>$\odot$表示向量逐元素相乘的意思，而这里的除号也是逐元素相除的意思。</p>
+<p>m和v分别表示一阶矩估计（平均值）和二阶矩估计（方差）</p>
+<p>之前比赛的时候用的BERT模型里面也用到了这种更新参数的方法，但是我不太懂这个方法的原理（数学推导太复杂了懒得琢磨hh）。就知道它对深度神经网络模型有更好的收敛速度</p>
+<h2 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h2><p>Dropout是一种正则化的方法，用于降低过拟合的风险。</p>
+<p>具体就是把<strong>隐层的神经元输出随机置为0</strong>，相当于在加了一层dropout层，但是不是只是把抽中的神经元输出置为0，还需要把没被抽中的神经元的输出乘上一个系数，使得隐层神经元的输出的期望值和没有dropout时一样<br>$$<br>h_{drop}= \gamma d\odot h<br>$$<br>其中$d$是一个和隐层神经元个数一致的向量，其值为0或1，有$p$的概率为0，有$1-p$的概率为1</p>
+<p>$\gamma$是与$p$相关的量<br>$$<br>E_{p_{drop}}[h_{drop}]_i=h_i<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">hidden_layer = activate_f(torch.matmul(x, self.embed_to_hidden_weight) + self.embed_to_hidden_bias)<br>hidden_layer = self.dropout(hidden_layer)<br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是，<strong>这个做法只在训练的时候用</strong>，在预测的阶段是不会用dropout的</p>
+<blockquote>
+<p> Note: In PyTorch we can signify train versus test and automatically have the Dropout Layer applied and removed, accordingly, by specifying whether we are training, <code>model.train()</code>, or evaluating, <code>model.eval()</code></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">parser.model.train() <span class="hljs-comment"># Places model in &quot;train&quot; mode, i.e. apply dropout layer</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p>依存句法分析器分析的是句子的语法结构，建立核心词和修饰该核心词的单词之间的关系</p>
+<p>举个简单的例子：</p>
+<blockquote>
+<p>るるのことが好き</p>
+</blockquote>
+<p>若「好き」作为核心词，则存在两个与「好き」相关的依存关系</p>
+<p>好き→が        </p>
+<p>好き→こと</p>
+<p>一般来说，有三种类型的依存句法分析器</p>
+<ul>
+<li>基于转换的分析器</li>
+<li>基于图的分析器</li>
+<li>基于特征的分析器</li>
+</ul>
+<p>作业里面用到的是第一种，基于转换的分析器</p>
+<p>分析器需要三个存储列表<strong>Stack，Buffer，New_dependency</strong></p>
+<p>而转换一共有三大类转换（简化）</p>
+<ul>
+<li>SHIFT:removes the first word from the buffer and pushes it onto the stack.</li>
+<li>LEFT-ARC:marks the second (second most recently added) item on the stack as a dependent of the first item and removes the second item from the stack, adding a $first\quad word$  $\rightarrow$  $second\quad word$  dependency to the dependency list.</li>
+<li>RIGHT-ARC: marks the first (most recently added) item on the stack as a dependent of the second item and removes the first item from the stack, adding a $second\quad word$ $\to $$first \quad word $  dependency to the dependency list.</li>
+</ul>
+<p>我们用一个简单的例子来看看运行过程</p>
+<blockquote>
+<p>I parsed this sentence correctly</p>
+</blockquote>
+<p>对上面的句子进行语法结构分析，最终应该得到的语法结构如下</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211007152526.png" srcset="/img/loading.gif" lazyload></p>
+<p>而对应的部分中间过程如下</p>
+<table>
+<thead>
+<tr>
+<th>Stack</th>
+<th>Buffer</th>
+<th>New Dependency</th>
+<th>Transition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[ROOT]</td>
+<td>[I,parsed,this,sentence,correctly]</td>
+<td></td>
+<td>Initial Configuration</td>
+</tr>
+<tr>
+<td>[ROOT,I]</td>
+<td>[parsed,this,sentence,correctly]</td>
+<td></td>
+<td>SHIFT</td>
+</tr>
+<tr>
+<td>[ROOT,I,parsed]</td>
+<td>[this,sentence,correctly]</td>
+<td></td>
+<td>SHIFT</td>
+</tr>
+<tr>
+<td>[ROOT,parsed]</td>
+<td>[this,sentence,correctly]</td>
+<td>parsed$\to$I</td>
+<td>LEFT-ARC</td>
+</tr>
+</tbody></table>
+<p>最后完成句子解析的时候，Stack的大小为1，只剩下ROOT一个元素，Buffer为空，我们所需要的就是得到的单词和单词之间的依存关系，也就是New Dependency里的元素，该列表的元素为元组形式，如$(parsed,I)$</p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211007185353.png" srcset="/img/loading.gif" lazyload></p>
+<p>输入：句子的集合（比如说一篇文章），依存句法解析模型</p>
+<p>初始化：对于输入的每一个句子，都初始化一个对应的解析模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">partial_parses = [PartialParse(sentences[i]) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(sentences))]<br></code></pre></td></tr></table></figure>
+
+<p>​                再创建一个该解析器集合的浅复制（也就是两个列表中的引用的对象实际上是一致的）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">unfinished_parses = partial_parses[:]<br></code></pre></td></tr></table></figure>
+
+<p>while unfinished_parses is not empty do</p>
+<p>​    从unfinished_parses中取出batch_size个句法解析对象作为minibatch(简单起见直接取前batch_size个)</p>
+<div class="note note-success">
+            <p>使用批量处理可以更高效使用CPU或GPU</p>
+          </div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">minibatch = unfinished_parses[:batch_size]<br></code></pre></td></tr></table></figure>
+
+<p>对于minibatch中的每个句子，用模型预测下一个转换应该是哪一步,也就是从SHIFT,LEFT-ARC,RIGHT-ARC三种转换中选择一种，然后让解析器执行步骤</p>
+<p>model显然传回来的是一个执行步骤列表，如[SHIFT,LEFT-ARC,RIGHT-ARC,LEFT-ARC,SHIFT…..]，对于每一个句子都预测当前的下一步应该执行哪种转换</p>
+<p>当有一个解析器里对应的buffer为空，且stack的大小为1时，就把该解析器从unfinished_parses列表中移除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> unfinished_parses:<br>     minibatch = unfinished_parses[:batch_size]<br>     transitions = model.predict(minibatch)<br>     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(transitions)):<br>         minibatch[i].parse_step(transitions[i])<br>         <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> minibatch[i].buffer <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(minibatch[i].stack) == <span class="hljs-number">1</span>:<br>            unfinished_parses.remove(unfinished_parses[i])<br>            <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+
+<p>最后得到所有输入的句子对应的依存关系的列表作为输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">dependencies = [i.dependencies <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> partial_parses]<br></code></pre></td></tr></table></figure>
+
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>从上面的算法可以看到，整个算法最重要的就是对于当前解析器中的状态（Stack，Buffer，New Dependency），我们需要预测下一个步骤要做什么，是SHIFT，LEFT-ARC，还是RIGHT-ARC</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>首先需要搞清楚输入的x是什么</p>
+<blockquote>
+<p>First, the model extracts a feature vector representing the current state.</p>
+</blockquote>
+<p>也就是说，模型会自动抓取当前解析器的状态，转换为一个向量，大小为<strong>n_features</strong></p>
+<blockquote>
+<p>This feature vector consists of a list of tokens (e.g., the last word in the stack, first word in the buffer, dependent of the second-to-last word in the stack if there is one, etc.).</p>
+</blockquote>
+<p>该向量的每一个元素对应一个单词在词典中的索引，而该词典里面每行对应一个单词，以及已经训练好的单词向量（单词向量用于表示该单词的语义），向量大小为<strong>embed_size</strong>，例如</p>
+<p>‘’big’’    (-2.33056, 0.833901, -0.819715, 0.614493, -0.731628, 1.97627, -0.575884, -0.134451…..)</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>这里学到了一个新的技巧，在初始化模型时用nn.Parameter()函数来绑定模型里面的所需要更新的参数，在后面需要反向传播时，会自动更新模型里面定义的参数</p>
+<blockquote>
+<p>nn.Parameter()</p>
+</blockquote>
+<p>在模型中，有下面参数需要更新</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">self.embeddings = nn.Parameter(torch.tensor(embeddings))<br>self.embed_to_hidden_weight = nn.Parameter(nn.init.xavier_uniform_(torch.empty(self.embed_size * self.n_features, self.hidden_size)))<br>self.embed_to_hidden_bias = nn.Parameter(nn.init.uniform_(torch.empty(<span class="hljs-number">1</span>)))<br>self.dropout = nn.Dropout(p=dropout_prob)<br>self.hidden_to_logits_weight = nn.Parameter(nn.init.xavier_uniform_(torch.empty(self.hidden_size, self.n_classes)))<br>self.hidden_to_logits_bias = nn.Parameter(nn.init.uniform_(torch.empty(<span class="hljs-number">1</span>)))<br></code></pre></td></tr></table></figure>
+
+<p>分别是，单词向量的编码，编码层到隐层的权重、阈值，隐层到输出层的权重、阈值</p>
+<div class="note note-success">
+            <p>虽然单词向量的编码一开始是使用已经训练好的单词向量，但是在训练时还是会对其进行调整更新，以使得该单词向量更符合该任务</p>
+          </div>
+
+<h3 id="前向"><a href="#前向" class="headerlink" title="前向"></a>前向</h3><p>$$<br>x = [E_{w_1},…,E_{w_m}]\in R^{n-features}<br>$$</p>
+<p>其中$E$表示单词的词典，$E_{w_1}$则表示词典中的第$w_1$行，是当前状态的其中一个特征（也就是一个单词）<br>$$<br>h=RELU(xW+b_1)<br>$$</p>
+<p>$$<br>l=hU+b_2<br>$$</p>
+<p>$$<br>\hat{y}=softmax(l)<br>$$</p>
+<p>损失函数定义为<br>$$<br>J(\theta)=CE(y,\hat{y})=-\sum\limits_{i=1}^3 y_i\log \hat{y_i}<br>$$<br>输出则为<br>$$<br>(\hat{y_1},\hat{y_2},\hat{y_3})<br>$$<br>每个y对应着对应转换动作的概率（因为是用softmax函数）</p>
+<blockquote>
+<p>Note that we will not apply the softmax function here because it is included in the loss function nn.CrossEntropyLoss</p>
+</blockquote>
+<p>我们在forward函数中，最后只返回logits，而没有用softmax函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, w</span>):</span><br>	x = self.embedding_lookup(w) <span class="hljs-comment">#(batch_size, n_features * embed_size)</span><br>    activate_f = nn.ReLU()<br>    hidden_layer = activate_f(torch.matmul(x, self.embed_to_hidden_weight) + self.embed_to_hidden_bias)<br>    hidden_layer = self.dropout(hidden_layer)<br>    logits = torch.matmul(hidden_layer, self.hidden_to_logits_weight) + self.hidden_to_logits_bias<br>    <span class="hljs-keyword">return</span> logits<br></code></pre></td></tr></table></figure>
+
+<h3 id="后向"><a href="#后向" class="headerlink" title="后向"></a>后向</h3><p>只需要很简单的几行代码就可以自动根据损失函数来更新对应的参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">logits = parser.model.forward(train_x)<br>loss = loss_func(logits, train_y)<br>loss.backward()<br>optimizer.step()<br></code></pre></td></tr></table></figure>
+
+<p>当然，这里使用的参数更新方法是上面所说的Adam Optimization，损失函数是交叉熵损失函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">optimizer = torch.optim.Adam(parser.model.parameters(), lr=lr)<br>loss_func = torch.nn.CrossEntropyLoss()<br></code></pre></td></tr></table></figure>
+
+<h1 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h1><p>作业中有很多地方对论文的模型做了简化，其实挺可惜的，没体现出那篇论文的精髓</p>
+<p>比如说在神经网络的输入，作业中只选择了当前解析器状态的Stack和Buffer中的单词，但是没利用单词的属性</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211007212445.png" srcset="/img/loading.gif" lazyload></p>
+<p>除了单词向量外，论文中还使用到了POS tags（词性标签），和单词之间的关系属性arc labels</p>
+<div class="note note-primary">
+            <p>POS tags  ={NN,NNP,NNS,DT,JJ,….}</p><p>arc labels = {amod, tmod, nsubj, csubj, dobj}</p>
+          </div>
+
+<p>而且隐层的激活函数使用的是3次函数，它的直观的想法就是因为存在三类的输入（words, POS tags, arc labels），所以用三次函数可以得到三类输入的各种相互的关系</p>
+<blockquote>
+<p>Intuitively, every hidden unit is computed by a (non-linear) mapping on a weighted sum of input units plus a bias. Using $g(x) = x^3$ can model the product terms of $x_ix_jx_k$ for any three different elements at the input layer directly:</p>
+</blockquote>
+<p>$$<br>g(w_1x_1+…+w_mx_m+b)=\sum\limits_{i,j,k}(w_iw_jw_k)x_ix_jx_k+\sum\limits_{i,j}b(w_iw_j)x_ix_j+…<br>$$</p>
+<h2 id="错误类型"><a href="#错误类型" class="headerlink" title="错误类型"></a>错误类型</h2><p>算法最后所得到的语法结构依存关系的错误类型可以分为4类</p>
+<ul>
+<li>介词短语附加错误</li>
+<li>动词短语附加错误</li>
+<li>修饰词附加错误</li>
+<li>协调词附加错误</li>
+</ul>
+<p>介词短语附加错误：</p>
+<p>例子：Moscow sent troops into Afghanistan.</p>
+<p>Afghanistan是表示sent这个动作的地点的（介词）</p>
+<p>而错误的则为比如说：Afghanistan与troops有关系</p>
+<p>动词短语附加错误：</p>
+<p>例子：Leaving the store unattended, I went outside to watch the parade</p>
+<p>Leaving应该是修饰went的时间的，链接到其他单词上则为错误</p>
+<p>修饰词附加错误：</p>
+<p>例子：I am extremely short</p>
+<p>extremely是修饰short的，链接到其他单词上则为错误</p>
+<p>协调词附加错误：</p>
+<p>其实我不知道正确的翻译是什么（Coordination Attachment Error），但是意思还是很明确的，就是and，or，but等连词的两边的单词之间的关系</p>
+<p>例子：Would you like brown rice or garlic naan?</p>
+<p>naan和rice是有同位的关系的，链接到其他单词上则为错误</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Technology/">Technology</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/NLP/">NLP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/02/%E5%8C%97%E5%B2%AD%E5%B1%B1%E6%B8%B8%E8%AE%B0/">
+                        <span class="hidden-mobile">北岭山游记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
