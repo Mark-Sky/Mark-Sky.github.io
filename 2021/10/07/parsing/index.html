@@ -235,6 +235,8 @@
               <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这次花了两天时间做了第三次作业，实际上感觉给的提示太多了，如果认真做的话应该很快就能做完。最后发现这个依存句法解析的学习是一个<strong>监督学习</strong>，也就是需要人工标签才能学习，还是有点失望。对比起论文</p>
 <p><a target="_blank" rel="noopener" href="https://nlp.stanford.edu/pubs/emnlp2014-depparser.pdf">emnlp2014-depparser.pdf (stanford.edu)</a></p>
 <p>在作业中构建的模型实际上是一个简化了很多的模型</p>
+<p>具体的实现可以看我的Github上的代码</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Mark-Sky/cs224n-assignment/tree/main/assignment3">https://github.com/Mark-Sky/cs224n-assignment/tree/main/assignment3</a></p>
 <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><h2 id="Adam-Optimization"><a href="#Adam-Optimization" class="headerlink" title="Adam Optimization"></a>Adam Optimization</h2><p>该优化方法是对随机梯度下降方法（SGD）的改进</p>
 <p>令在一轮的训练中，参数$\theta$的导数为$\nabla \theta$，学习率为$lr$</p>
 <p>传统梯度下降方法下，参数的更新公式为<br>$$<br>\theta \gets \theta-lr\times\nabla\theta<br>$$<br>在Adam方法中，超参数除了学习率$lr$外，还有$\beta_1,\beta_2,\alpha$<br>$$<br>m\gets\beta_1m+(1-\beta_1)\nabla\theta<br>$$</p>
