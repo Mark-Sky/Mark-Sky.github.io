@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>RNN - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>山里有座庙</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="RNN">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-15 16:28" pubdate>
+        2021年10月15日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">RNN</h1>
+            
+            <div class="markdown-body">
+              <h1 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h1><p>RNN全称Recurrent Neural Networks，循环神经网络，用于处理序列化的输入</p>
+<p>LSTM是作为RNN的改进版而存在的，因此为了更好的了解LSTM，需要先对RNN的结构和它的不足之处有一个大概的认识</p>
+<h2 id="RNN的应用"><a href="#RNN的应用" class="headerlink" title="RNN的应用"></a>RNN的应用</h2><p>RNN主要用于处理序列化的输入数据，当数据是有先后顺序的时候（也就是当前的输入和之前的输入是有关系的时候），比如说音频数据，视频数据。在对音频数据进行分析的时候， 比如说需要判断当前时间点属于歌曲的副歌部分还是主歌部分的时候，可以通过前面的和弦进行和当前的和弦一起进行判断。</p>
+<p>当然，序列化的数据还有文本数据，我们可以利用Pytorch简单建立一个RNN的字符级的模型</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Mark-Sky/RNN">https://github.com/Mark-Sky/RNN</a></p>
+<p>在该模型训练前期，输入一个“e”，得到</p>
+<p> eohdo o ataI rtnvf a dcsF hit inirOedto L,ve  o tn u adminlArio ooancoletpwenid s te temaomt hn  e tt L  o ocNr ebrycaoms<br>igtc . nEta msrag  l hfat ee si i qH_oYho   aoza  ieeservenlhc mtpta afos ts</p>
+<p>属于是完全狗屁不通</p>
+<p>在该模型训练后期，输入一个“r”得到</p>
+<p>rest ofps yo we che to goulate gour ytingeid evae no thans enc lat ireed, ond fime Pfeer billy comlatis tore ofirsiacometh bere anserat wreeslyFing oarse do efove and ufher cout aninntiguliy to Oeeu b </p>
+<p>虽然还是狗屁不通，但是我们可以稍微看出来单词的样子，（因博主电脑资源有限，懒得等模型拟合了</p>
+<p>前一段时间网上很火的大学生水课神器–狗屁不通文章生成器实际上就可以用RNN实现</p>
+<h2 id="RNN的结构"><a href="#RNN的结构" class="headerlink" title="RNN的结构"></a>RNN的结构</h2><p>简单的来说，RNN其实就是利用了上一次的隐层的输出的一个神经网络，和时序逻辑电路的原理很像</p>
+<p>下面以一个简单的一层隐藏层的RNN作为例子说明</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211015180642.png" srcset="/img/loading.gif" lazyload></p>
+<p>因为加入了上一次隐层的输出作为输入，所以神经网络的参数新增了$W_{hh}$</p>
+<p>所有的权重参数：$W_{xh},W_{hh},W_{hy}$</p>
+<p>前向传播：(用tanh作为激活函数)<br>$$<br>h_t = tanh(W_{xh}x+W_{hh}h_{t-1}+b_h)<br>$$</p>
+<p>$$<br>y_t = W_{hy}h_t + b_y<br>$$</p>
+<p>$$<br>p = softmax(y_t)<br>$$</p>
+<p>但是我们经常会看到RNN的图如下：</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211015164703.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是其实这只是把不同时间点的隐藏层画了出来，实际上还是和上面的简单的RNN图示的结构是一样的</p>
+<h2 id="RNN的训练"><a href="#RNN的训练" class="headerlink" title="RNN的训练"></a>RNN的训练</h2><p>在对RNN训练的时候，一般使用批处理的训练，给n个输入，n个对应的目标输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">inputs = X[p:p + self.seq_length]<br>targets = X_id[p + <span class="hljs-number">1</span>:p + self.seq_length + <span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+<p>比如说，给出一个长度为6的输入：見上げてごら</p>
+<p>对应的目标输出就是：上げてごらん</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211022195952.png" srcset="/img/loading.gif" lazyload></p>
+<p>大致跟普通的神经网络的反向传播差不多，但是有一点需要注意的，就是我们正向传播的时候是按照时间顺序传播的<br>$$<br>h_t = tanh(W_{xh}x+W_{hh}h_{t-1}+b_h)<br>$$<br>但是我们在反向传播的时候，按照逆时间顺序来计算，注意$h_{t}$直接参与了两个式子<br>$$<br>h_{t+1} = tanh(W_{xh}x+W_{hh}h_{t}+b_h)<br>$$</p>
+<p>$$<br>y_t = W_{hy}h_t+b_y<br>$$</p>
+<p>而在计算$\frac{\partial loss}{\partial W_{xh}}$，$\frac{\partial loss}{\partial W_{hh}}$，$\frac{\partial loss}{\partial W_{bh}}$的时候，都需要经过<br>$$<br>\frac{\partial loss}{\partial h_t}=\frac{\partial loss}{\partial h_{t+1}}\cdot\frac{\partial h_{t+1}}{\partial h_t}+\frac{\partial loss}{\partial y_t}\cdot\frac{\partial y_t}{\partial h_t}<br>$$<br>因此，<strong>我们需要先计算$\frac{\partial loss}{\partial h_{t+1}}$，然后记下该结果，用于前一个时刻的梯度计算</strong>，因此反向传播是逆序的</p>
+<p>而为了计算所有时刻的$\frac{\partial loss}{\partial h_{t+1}}$，我们需要在前传时保存下每个时刻下的隐层的状态，不能覆盖隐层状态$h = f(h)$这样</p>
+<p>还有需要注意的就是<strong>梯度爆炸</strong>的问题，由上面的式子，我们很容易推导出<br>$$<br>\frac{\partial loss}{\partial h_{t-1}}=(\frac{\partial loss}{\partial h_{t+1}}\cdot\frac{\partial h_{t+1}}{\partial h_t}+\frac{\partial loss}{\partial y_t}\cdot\frac{\partial y_t}{\partial h_t})\frac{\partial h_t}{\partial h_{t-1}}+\frac{\partial loss}{\partial y_{t-1}}\cdot \frac{\partial y_{t-1}}{\partial h_{t-1}}<br>$$<br>对隐层的偏导是不断叠加的，最后一个时刻的隐层的偏导甚至会影响到第一个时刻的隐层的偏导，（最后一个时刻的RNN可以理解为一个深层的神经网络，该神经网络有$t$层隐层）因此很容易出现梯度爆炸的问题，因此需要clip来限制偏导的范围</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">np.clip(dparam, -<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, out=dparam)<br></code></pre></td></tr></table></figure>
+
+<p>实际上一些RNN的变体就不会存在梯度爆炸的问题，如LSTM等具有门结构的神经网络</p>
+<p>对梯度爆炸问题，可以参考下面的文章</p>
+<p><a target="_blank" rel="noopener" href="https://machinelearningmastery.com/exploding-gradients-in-neural-networks/">https://machinelearningmastery.com/exploding-gradients-in-neural-networks/</a></p>
+<p>在每批训练结束后，需要清空隐层的状态，把上一批训练的最后一个时刻的隐层状态设置为下一批训练的第$-1$个隐层状态。</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211022205252.png" srcset="/img/loading.gif" lazyload></p>
+<p>还有一个对模型收敛很重要的点：使用Adam优化而不是SGD。使用交叉熵作为损失函数，对比两种梯度更新方法</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211022211916.png" srcset="/img/loading.gif" lazyload></p>
+<p>其中蓝色线代表Adam，黄色线代表SGD</p>
+<p>总结一下，需要注意的点：</p>
+<div class="note note-primary">
+            <ol><li>按照时间的逆序计算反向传播的梯度</li><li>避免梯度爆炸的情况</li><li>使用Adam优化而不是随机梯度下降</li></ol>
+          </div>
+
+<h2 id="RNN的发展"><a href="#RNN的发展" class="headerlink" title="RNN的发展"></a>RNN的发展</h2><p>RNN是用于处理序列化输入的，最简单的模型就是本文所述的模型，该模型存在的问题是“尽管可以利用前文的信息，但是很难获取太久之前的信息，因此对长依赖的关系效果很差“</p>
+<p>比如在文本预测中，我们需要根据前文判断中间空出来的词语：</p>
+<p>小野さんは大学のころに中国語を学んだことがある。それから上海にきた、色んな人と出会た、いろんな知識を学んだ、仕事…二年前は日本に帰って来たんだけと、今でも＿＿語を喋られる</p>
+<p>上面的一段显然那个__中应该填的是「中国」，但是简单的RNN无法利用太久远的信息「中国語」，虽然从后面的「語を喋られる」可以推测出是哪一个国家的语言，但是却很难推出是中文</p>
+<p>可能百度翻译用的就是RNN？哈哈</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211022223055.png" srcset="/img/loading.gif" lazyload></p>
+<p>所以为了解决这种长依赖关系，LSTM就出现了，LSTM（Long Short Term Memory）的出厂设置就是可以利用很久以前的信息。但是由于它仍然是一个序列化的模型，后面还出现了更好的模型，<strong>Attention</strong>，该模型能更好的处理上面的情况</p>
+<p>可以参考经典文章</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a></p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Pictures20211022224817.png" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/NLP/">NLP</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Technology/">Technology</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/07/parsing/">
+                        <span class="hidden-mobile">依存句法解析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
