@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>机器翻译历史 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>山里有座庙</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="机器翻译历史">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-29 20:20" pubdate>
+        2021年10月29日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">机器翻译历史</h1>
+            
+            <div class="markdown-body">
+              <h1 id="SMT"><a href="#SMT" class="headerlink" title="SMT"></a>SMT</h1><p>SMT全称Statistical Machine Translation，统计式机器翻译。在1990到2010的20年，这类方法是机器翻译的主流方法，人们投入了大量的时间去研究，做特征工程</p>
+<h2 id="大概流程"><a href="#大概流程" class="headerlink" title="大概流程"></a>大概流程</h2><ol>
+<li>把源句子分割（至于分割为短语还是字符还是单词取决于该语言的特性）</li>
+<li>通过翻译模型（Translation model）来找到源句子的片段的对应的目标句子的片段</li>
+<li>通过语言模型（Language Model）调整目标句子的语序使得句子流畅</li>
+</ol>
+<p><img src="https://i1.wp.com/kantanmtblog.com/wp-content/uploads/2019/04/smt-model.jpg?resize=572,367&ssl=1" srcset="/img/loading.gif" lazyload alt="SMT Model"></p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>SMT需要训练两个模型，分别是翻译模型（Translation model）和语言模型（Language Model）</p>
+<h3 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h3><p>给定中文句子x，我们需要找到最好的翻译的英语句子y（最有可能的翻译）<br>$$<br>\arg\max_{y} P(y|x)<br>$$<br>使用贝叶斯公式，可以把上面的优化目标分为两部分<br>$$<br>\arg\max_{y} P(x|y)\cdot P(y)<br>$$<br>$P(x|y)$就是翻译模型的优化目标，对应的是翻译的准确性，需要使用大量的平行数据，比如说要翻译中文为英文，需要大量的中英译本作为数据集</p>
+<p>$P(y)$则为语言模型的优化目标，对应的是翻译的流畅性，只需要使用单语数据</p>
+<p>从该模型的优化目标就可以看出来，SMT是不可能赶上优秀的人工翻译的。中学时学文言文的时候，老师就教过翻译的原则“信，达，雅”</p>
+<blockquote>
+<p>“译事三难，即信，达，雅。求其信，已大难也！顾信也，不达，虽译，犹不译也，则达尚焉。”</p>
+</blockquote>
+<p>“信”（faithfulness）是指忠实准确地传达原文的内容；“达”（expressiveness）指译文通顺流畅；“雅”（elegance）可解为译文有文才，文字典雅。</p>
+<p>即使得到的模型能最大化$P(x|y),P(y)$，也仅仅只是做到了信和达，但是是不可能做到“雅”的。</p>
+<h3 id="翻译模型"><a href="#翻译模型" class="headerlink" title="翻译模型"></a>翻译模型</h3><p>翻译模型需要最大化$P(x|y)$，但是实际上还需要引入一个隐变量$a$，代表着两种语言的单词，短语之间的对应关系，英文是alignment.。实际上最大化的是$P(x,a|y)$</p>
+<p>语言单词之间的对应关系是一个非常复杂的东西，</p>
+<p>有可能中文的一个单词会对应英语的多个单词 “男人” $\to$ “the man”</p>
+<p>也会有英语的一个单词对应中文的多个单词，“spam”$\to$ “垃圾 邮件”</p>
+<p>综上，对应关系可以是一对一，也可以是一对多，多对一，</p>
+<p>学习$P(x,a|y)$的时候，需要更加具体地表示$P(x,a|y)$，它在语义上可以包含：</p>
+<ul>
+<li>特定单词对齐的概率</li>
+<li>单词可能对应的译文单词的数目的概率</li>
+<li>…..</li>
+</ul>
+<p>（翻译的有点怪hh）总之就是可以具象地表示$P(x,a|y)$这个抽象的概念</p>
+<p>对应关系是一个隐变量，因此并不是在数据集中能直接观察得到的特征，需要使用到一些特殊的算法，比如说EM算法来学习隐变量的分布</p>
+<h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><p>因为不可能把所有可能的目标句子$y$遍历一遍的，所以需要使用一些算法，比如所动态规划算法（Viterbi algorithm），这是概率图算法（好难）</p>
+<h1 id="NMT"><a href="#NMT" class="headerlink" title="NMT"></a>NMT</h1><p>因为SMT的复杂，且需要投入大量的人力来做特征工程，到2010年后，NMT出现后，基本上就被替代了</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Picturesimage-20211030095953345.png" srcset="/img/loading.gif" lazyload alt="image-20211030095953345"></p>
+<p>这么多年来NMT也是逐渐的在进步，不断改进，才取得了现在的效果</p>
+<h2 id="传统编码-译码模型"><a href="#传统编码-译码模型" class="headerlink" title="传统编码-译码模型"></a>传统编码-译码模型</h2><h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>给定一个源句子$x=(x_1,x_2,…,x_{T_x})$，编码的任务就是把$x$转化为一个固定长度的向量$c$</p>
+<p>一般的做法就是，先得到RNN的隐层<br>$$<br>h_t=f(x_t, h_{t-1})\quad t=1,2,…,T_{x}<br>$$<br>然后对所有时间的隐层输出作整合得到编码向量c<br>$$<br>c=q({h_1,h_2,…,h_{T_x}})<br>$$<br>$f,q$一般都是非线性函数，可以用LSTM作为$f$</p>
+<div class="note note-primary">
+            <p>值得注意的是，一般这种单向的序列化处理模型会让句子倒序输入，以减少长依赖关系，增加短依赖关系</p>
+          </div>
+
+<h3 id="译码"><a href="#译码" class="headerlink" title="译码"></a>译码</h3><p>为了得到目标句子$y = (y_1,y_2,…,y_{T_y})$，我们训练模型，用于计算下面的概率<br>$$<br>p(y)=\prod\limits_{t=1}^{T_y}p(y_t|{y_1,y_2,…,y_{t-1}},c)<br>$$<br>实际上就是简单的RNN模型，每一步给定已经生成的$t’-1$个单词{$y_1,y_2,…,y_{t’-1}$}，要求生成第$t’$个单词$y_{t’}$<br>$$<br>p(y_t|y_1,y_2,..,y_{t-1},c)=g(y_{t-1},s_{t},c)<br>$$<br>其中$s_t$表示$t$时刻译码RNN隐层的输出</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>很明显，这种简单的模型的最大缺陷就是它尝试把整个句子编码为一个固定的向量，简单暴力，效果也没多好，难以处理长依赖关系。而且由于抛弃了SMT中的Align，模型的可解释性不强</p>
+<blockquote>
+<p>One of the motivations behind the proposed approach was the use of a fixed-length context vector in the basic encoder-decoder approach. We conjectured that this limitation may make the basic encoder-decoder approach to underperform with long sentences</p>
+</blockquote>
+<h2 id="RNN-Soft-Align"><a href="#RNN-Soft-Align" class="headerlink" title="RNN + Soft Align"></a>RNN + Soft Align</h2><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Picturesimage-20211104224635370.png" srcset="/img/loading.gif" lazyload alt="image-20211104224635370" style="zoom:67%;" />
+
+<h3 id="编码-1"><a href="#编码-1" class="headerlink" title="编码"></a>编码</h3><div class="note note-primary">
+            <p>在论文中，<strong>annotation of the word</strong>经常出现，直接翻译就是单词的注释。这个单词感觉用得挺好的，因为单词注释就表示在编码的时候RNN的隐层的输出，该向量就好像是这个单词的解释一样</p>
+          </div>
+
+<p>编码器使用LSTM，且使用双向的，这样可以更好的利用<strong>上下文</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">self.encoder = nn.LSTM(embed_size, hidden_size, bidirectional=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">X = self.model_embeddings.source(source_padded)<br>X = pack_padded_sequence(X, [<span class="hljs-built_in">len</span>(sentence[sentence != <span class="hljs-number">0</span>]) <span class="hljs-keyword">for</span> sentence <span class="hljs-keyword">in</span> source_padded.T])<br>enc_hiddens, (last_hidden, last_cell) = self.encoder(X)<br>seq_unpacked, lens_unpacked = pad_packed_sequence(enc_hiddens)<br></code></pre></td></tr></table></figure>
+
+<p>在具体的实现中，需要对填充过的句子先删除掉没有意义的填充值0，然后再进行编码，编码之后，为了格式的统一再填充上0值</p>
+<p>具体参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/342685890">pack_padded_sequence 和 pad_packed_sequence - 知乎 (zhihu.com)</a></p>
+<blockquote>
+<p>当采用 RNN 训练序列样本数据时，会面临序列样本数据长短不一的情况。比如做 NLP 任务、语音处理任务时，每个句子或语音序列的长度经常是不相同。难道要一个序列一个序列的喂给网络进行训练吗？这显然是行不通的。</p>
+<p>为了更高效的进行 batch 处理，就需要对样本序列进行填充，保证各个样本长度相同，在 PyTorch 里面使用函数 pad_sequence 对序列进行填充。填充之后的样本序列，虽然长度相同了，但是序列里面可能填充了很多无效值 0 ，将填充值 0 喂给 RNN 进行 forward 计算，不仅浪费计算资源，最后得到的值可能还会存在误差。因此在将序列送给 RNN 进行处理之前，需要采用 pack_padded_sequence 进行压缩，压缩掉无效的填充值。序列经过 RNN 处理之后的输出仍然是压紧的序列，需要采用 pad_packed_sequence 把压紧的序列再填充回来，便于进行后续的处理。</p>
+</blockquote>
+<ul>
+<li>数学描述</li>
+</ul>
+<p>对于源句子，我们首先把每个单词都转换成为编码好的单词向量$x_1,x_2,..,x_m(x_i\in R^{e\times 1})$，m就是源句子的长度，e就是单词向量的编码长度</p>
+<p>编码的Bi-LSTM中，有用的变量：</p>
+<p>hidden states：$h_i^{enc}=[\overleftarrow{h_i^{enc}};\overrightarrow{h_i^{enc}}]$   where $h_i^{enc}\in R^{2h\times 1}$，$\overleftarrow{h_i^{enc}},\overrightarrow{h_i^{enc}}\in R^{h\times 1}$</p>
+<p>cell states：$c_i^{enc}=[\overleftarrow{c_i^{enc}};\overrightarrow{c_i^{enc}}]$   where $h_i^{enc}\in R^{2h\times 1}$，$\overleftarrow{c_i^{enc}},\overrightarrow{c_i^{enc}}\in R^{h\times 1}$</p>
+<div class="note note-info">
+            <p>关于hidden states和cell states，个人的直观理解是：hidden states更关注该时刻的最近的信息，而cell states可以存储更久远之前的信息</p>
+          </div>
+
+<ul>
+<li>代码</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">X = self.model_embeddings.source(source_padded)<br>X = pack_padded_sequence(X, [<span class="hljs-built_in">len</span>(sentence[sentence != <span class="hljs-number">0</span>]) <span class="hljs-keyword">for</span> sentence <span class="hljs-keyword">in</span> source_padded.T])<br>enc_hiddens, (last_hidden, last_cell) = self.encoder(X)<br>seq_unpacked, lens_unpacked = pad_packed_sequence(enc_hiddens)<br>enc_hiddens = seq_unpacked.transpose(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="译码-1"><a href="#译码-1" class="headerlink" title="译码"></a>译码</h3><p>每一步的概率：<br>$$<br>p(y_i|y_1,…,y_{i-1},x)=g(y_{i-1},s_i,c_i)<br>$$<br>可以回顾一下上面写的传统的模型的概率<br>$$<br>p(y_t|y_1,y_2,..,y_{t-1},c)=g(y_{t-1},s_{t},c)<br>$$<br>两者最大的不同就是用$c_i$代替了$c$，$c_i$是用对编码层的单词的注释的不同权重相加得到的，这里就有Attention的意思了，表示当前译码的输出可以回看整个编码的过程，并且有侧重的选择某些单词作为翻译的重点<br>$$<br>c_i=\sum\limits_{i=1}^{T_x}\alpha_{ij}h_j<br>$$<br>而注释的权重由下式得到：<br>$$<br>\alpha_{ij}=\frac{exp(e_{ij})}{\sum_{k=1}^{T_x}exp(e_{ik})}<br>$$</p>
+<p>$$<br>e_{ij}=a(s_{i-1},h_j)<br>$$</p>
+<p>$a(s_{i-1},h_j)$就是一个align模型，它表示输入的第j个单词（的注释）对第i个位置的输出的影响的大小。和SMT不同的是，这里只需要把$a$设置为一个前向传输的神经网络来训练，它是和模型的其他参数一起显式的训练的，而不是一个隐变量。</p>
+<p><img src="https://raw.githubusercontent.com/Mark-Sky/picGo/main/C%3A%5CUsers%5Czqf%5COneDrive%5C%E5%9B%BE%E7%89%87%5CSaved%20Picturesimage-20211105154727607.png" srcset="/img/loading.gif" lazyload alt="image-20211105154727607"></p>
+<div class="note note-warning">
+            <p>感觉这个是神经网络的一个很大的进步，因为神经网络本身的可解释性是很差的，但是该显式的soft align的引入使得机器翻译模型更符合人类的直观感觉-翻译的时候是每个单词看着对应的源句子里的单词来翻译的，而不是读完一个源句子变成一个向量然后让机器翻译这个向量</p>
+          </div>
+
+<h3 id="阶段总结"><a href="#阶段总结" class="headerlink" title="阶段总结"></a>阶段总结</h3><p>引入了Soft Alignment的RNN模型对比起传统的SMT的优点就是把原来的hard Alignment（隐变量，计算算法复杂）抛弃，而采用soft Alignment。</p>
+<p>而对比起NMT的传统的编码-译码模型，该模型的优点还是引入了alignment的机制，使得模型的可解释性变强</p>
+<hr>
+<p>未完待续</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Technology/">Technology</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/NLP/">NLP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/15/LSTM/">
+                        <span class="hidden-mobile">RNN</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
