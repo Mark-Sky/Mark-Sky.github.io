@@ -254,7 +254,8 @@
           </div>
 
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>功利起见，先说怎么做，再回头看原理</p>
-<p>假设一个线性不可分的数据集$(\vec x_i,y_i)<em>{i=1}^n,\vec x\in R^D$，对于每个$\vec x_i$，作如下变化<br>$$<br>z(x)=(\frac{1}{\sqrt R}z</em>{w1}(x),\frac{1}{\sqrt R}z_{w2}(x),…,\frac{1}{\sqrt R}z_{wR}(x))<br>$$</p>
+<p>假设一个线性不可分的数据集$(x_i,y_i)_{i=1}^n, x_i\in R^D$，对于每个$ x_i$，作如下变化</p>
+<p>$$<br>z(x)=(\frac{1}{\sqrt R}z_{w1}(x),\frac{1}{\sqrt R}z_{w2}(x),…,\frac{1}{\sqrt R}z_{wR}(x))<br>$$</p>
 <p>$$<br>z_{w}(x)=\sqrt 2 \cos (w^Tx+b)<br>$$</p>
 <p>其中$R$是超参数，R越大，对核函数的近似度越高。</p>
 <p>每个$w\in N_D(0,I)$，服从D维高斯分布</p>
@@ -376,12 +377,6 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
-                    
-                      <a href="/2021/12/09/%E7%AE%80%E5%8D%95%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2%E8%AF%86%E5%88%AB/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">简单几何图形识别</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
                     
                   </article>
                   <article class="post-next col-6">
